@@ -4,19 +4,21 @@
 # way build.ps1 drops to raw System.IO.Compression instead of Compress-Archive.
 #
 # ONE-TIME SETUP before this will work:
-#   1. Fill in $ModrinthProjectSlug below with your real Modrinth project slug.
-#   2. Fill in $CurseForgeProjectId below with your numeric CurseForge project ID
-#      (visible on the project's "About Project" sidebar). Leave it 0 to skip
-#      CurseForge uploads (e.g. if that project doesn't exist yet).
-#   3. In a normal terminal (not committed anywhere), set persistent env vars:
+#   1. $ModrinthProjectId below is already set to Reel Rivals' real project id.
+#   2. In a normal terminal (not committed anywhere), set persistent env vars:
 #        setx MODRINTH_TOKEN "mrp_xxxxxxxxxxxxxxxxxxxx"
 #        setx CURSEFORGE_TOKEN "xxxxxxxxxxxxxxxxxxxxxx"
+#        setx CURSEFORGE_PROJECT_ID "123456"    # numeric, from "About Project" on CurseForge
 #      Open a NEW terminal afterwards so the vars are picked up.
 #
+# CurseForge is skipped unless it has a project id (parameter or env var), and the script
+# now SAYS so rather than skipping quietly. Modrinth needs no extra setup.
+#
 # USAGE (run build.ps1 first so dist/ has the zips for -Version):
-#   powershell -File tools\publish.ps1 -Version 1.2.1 -ChangelogFile tools\changelog-current.md
-#   powershell -File tools\publish.ps1 -Version 1.2.1 -ChangelogFile tools\changelog-current.md -DryRun
-#   powershell -File tools\publish.ps1 -Version 1.2.1 -ChangelogFile tools\changelog-current.md -SkipCurseForge
+#   powershell -File tools\publish.ps1 -Version 1.3.0 -ChangelogFile tools\changelog-current.md
+#   powershell -File tools\publish.ps1 -Version 1.3.0 -ChangelogFile tools\changelog-current.md -DryRun
+#   powershell -File tools\publish.ps1 -Version 1.3.0 -ChangelogFile tools\changelog-current.md -CurseForgeProjectId 123456
+#   powershell -File tools\publish.ps1 -Version 1.3.0 -ChangelogFile tools\changelog-current.md -SkipCurseForge
 #
 # This performs REAL, PUBLIC uploads when run without -DryRun. Review the DryRun
 # output first.
@@ -24,6 +26,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Version,
     [Parameter(Mandatory=$true)][string]$ChangelogFile,
+    [int]$CurseForgeProjectId = 0,
     [switch]$SkipModrinth,
     [switch]$SkipCurseForge,
     [switch]$DryRun
@@ -34,7 +37,13 @@ $ErrorActionPreference = "Stop"
 # The version-create endpoint requires the base62 project ID, not the slug (slugs can
 # contain hyphens, which aren't valid base62). Confirmed via GET /v2/project/reel-rivals.
 $ModrinthProjectId = "kjZva5Zm"           # Reel Rivals' real Modrinth project id
-$CurseForgeProjectId = 0                  # <-- 0 = skip; set to your numeric CurseForge project ID
+
+# CurseForge project id (numeric, from the project's "About Project" sidebar).
+# Resolution order: -CurseForgeProjectId parameter > CURSEFORGE_PROJECT_ID env var > unset.
+# Set it once with:  setx CURSEFORGE_PROJECT_ID "123456"   (then open a NEW terminal)
+if ($CurseForgeProjectId -eq 0 -and $env:CURSEFORGE_PROJECT_ID) {
+    $CurseForgeProjectId = [int]$env:CURSEFORGE_PROJECT_ID
+}
 
 $proj = Split-Path $PSScriptRoot -Parent
 $dist = Join-Path $proj "dist"
@@ -138,9 +147,30 @@ foreach ($l in $lines) {
         }
     }
 
+    # Say so out loud when CurseForge is being skipped. A silent skip reads as a successful
+    # two-platform publish when only Modrinth actually got the file.
+    if ($SkipCurseForge) {
+        Write-Host "CurseForge: SKIPPED (-SkipCurseForge)"
+    } elseif ($CurseForgeProjectId -eq 0) {
+        Write-Host "CurseForge: SKIPPED - no project id. Pass -CurseForgeProjectId <number> or set CURSEFORGE_PROJECT_ID."
+    }
+
     if (-not $SkipCurseForge -and $CurseForgeProjectId -ne 0) {
         if ($DryRun) {
-            Write-Host "[DryRun] Would look up CurseForge game version id for '$($l.mc)' and POST upload-file to project $CurseForgeProjectId"
+            # Resolve the game version for real - it is a read-only GET, and an unresolvable
+            # version is the most common reason a CurseForge upload fails. Better to find out
+            # in the dry run than half way through a live publish.
+            Write-Host "[DryRun] CurseForge project $CurseForgeProjectId"
+            if ($CurseForgeToken) {
+                $gvId = Get-CurseForgeGameVersionId -Name $l.mc -Token $CurseForgeToken
+                if ($gvId) {
+                    Write-Host "[DryRun]   game version '$($l.mc)' -> id $gvId; would POST upload-file"
+                } else {
+                    Write-Host "[DryRun]   game version '$($l.mc)' DID NOT RESOLVE - this upload would be skipped"
+                }
+            } else {
+                Write-Host "[DryRun]   CURSEFORGE_TOKEN not set - cannot verify the game version id"
+            }
         } else {
             $gvId = Get-CurseForgeGameVersionId -Name $l.mc -Token $CurseForgeToken
             if (-not $gvId) {

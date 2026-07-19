@@ -34,7 +34,12 @@ Each command prints with its server response. What to check:
 - lore shows one literal `Weight: X.Y kg` line, and the second process pass does NOT add another
 - the record scoreboard matches the lore (record 51 = 5.1 kg)
 - lure conversion renames the item and sets `#conv` to 1
-- the Almanac spawns with `enchantment_glint_override` = `0b` and pages[19] exists (20 pages)
+- the Almanac spawns with `enchantment_glint_override` = `0b` and pages[19] exists (29 pages as of 1.3.0;
+  the check is a floor, not the exact count — `gen_book.ps1` prints the real total when it runs)
+- both 1.3.0 rods read back their above-vanilla enchantment levels intact: the Naturalist's Rod at
+  Luck of the Sea 6, the Grandmaster's Rod at Luck of the Sea 7 **and Lure 4**. Vanilla `max_level` for
+  both enchantments is 3; if a future version starts clamping over-max levels, these two reads are
+  where it will show up first.
 
 The cleanup block at the end of `smoketest.txt` resets the record slates it touched.
 Edit or extend `smoketest.txt` freely — one command per line, `#` for comments.

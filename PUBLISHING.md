@@ -1,24 +1,25 @@
-# Reel Rivals — publishing kit (current as of v1.2.1 "Fair Play" hotfix)
+# Reel Rivals — publishing kit (current as of v1.3.0 "Two Paths")
 
 Everything for the Modrinth project page. Art lives in `assets/`
 (icon.png = project icon, banner.png = featured gallery image, card_*.png = gallery).
 
-**Files to upload — ADD as new versions; do not delete the 1.1.0 or 1.2.0 versions**
+**Files to upload — ADD as new versions; do not delete older versions**
 (Modrinth automatically serves each player the newest file tagged for their game version):
 
 | Upload as version | File | Game version tag |
 |---|---|---|
-| `1.2.1+mc1.21.1` | `dist/ReelRivals-1.2.1+mc1.21.1.zip` | 1.21.1 |
-| `1.2.1+mc26.2` | `dist/ReelRivals-1.2.1+mc26.2.zip` | 26.2 |
+| `1.3.0+mc1.21.1` | `dist/ReelRivals-1.3.0+mc1.21.1.zip` | 1.21.1 |
+| `1.3.0+mc26.2` | `dist/ReelRivals-1.3.0+mc26.2.zip` | 26.2 |
 
 Both are loader "datapack" and carry identical content — same 28 fish, tackle, tournaments,
 leaderboard, and Almanac — just built for each version's data format. Both were verified
 error-free and smoke-tested on their own dedicated vanilla server. Paste the 1.2.1 changelog
 (below) into each upload's changelog field.
 
-**If you already uploaded 1.2.0**: it shipped with a bug (see 1.2.1 changelog) — upload 1.2.1
-promptly so new downloaders land on the fix, and consider a pinned comment on the 1.2.0 version
-pointing people to update.
+**Heads-up for the 1.3.0 release notes**: the Legend Rod's unlock changed from 250 catches to
+"every species + a 15 kg catch." Players mid-way to the old gate will find it moved. Anyone who
+already owns the rod keeps it. Worth calling out plainly in the version description so it doesn't
+read as a bug.
 
 ---
 
@@ -73,20 +74,28 @@ Any player can host — no ops, no plugins, one command:
 - **Take the pot**: automatic crash-proof payouts, trophies for the podium stamped with the
   tournament day and final score, and your name broadcast to everyone who lost
 
-## 📈 The long grind
+## 📈 Two paths to the top
 
-Every cast counts toward something. 100 catches unlock **Abyssal Chum** (Luck IV). A 15 kg
-monster earns *Leviathan*. 250 catches plus a Leviathan forge the **Legend Rod** — Luck of
-the Sea VIII, unbreakable. 500 catches serve the **King's Feast** (Luck V for 8 minutes —
-the bait that makes legends realistic). And at 1,000 catches the server stops to announce a
-**Master of the Deep**. Four rod tiers, five bait tiers, and a `/trigger rr.top` **live
-leaderboard** of the server's top anglers — visible even while everyone keeps fishing.
+Every angler earns the same first two rods. Then the ladder forks — and you can walk both.
+
+Fish **every water in the world** — river, lake, open ocean, warm reef, frozen sea, the deeps,
+swamp, jungle, and the End — and the **Naturalist's Rod** is yours. Finish the entire ledger,
+all 28 species, with a 15 kg leviathan on your record, and you forge the **Legend Rod**: Luck
+of the Sea VIII, unbreakable, the finest rare-hunting rod in the game.
+
+Or win. Five tournament victories crown you **Grandmaster**, and the Grandmaster's Rod fishes
+roughly twice as fast as anything else on the water — the rod you want when the clock is
+running and volume decides it.
+
+Neither is strictly better. Luck of the Sea pulls rarity; Lure pulls speed. Around them: five
+bait tiers up to **King's Feast** (Luck V), **Abyssal Chum** at 100 catches, *Master of the
+Deep* at 1,000, and a `/trigger rr.top` **live leaderboard** of the server's best.
 
 ## 📖 The Angler's Almanac
 
-Every player gets a free in-game field guide — 27 pages with a clickable, linked table of
+Every player gets a free in-game field guide — 29 pages with a clickable, linked table of
 contents and a `<< Contents` jump on every page: every species with where and when it bites,
-every lure recipe, every rod's build path. `/trigger rr.guide` any time.
+every lure recipe, and both rod build paths. `/trigger rr.guide` any time.
 
 And your catch is never wasted: every fish is still real vanilla food. Cook it and it becomes
 an ordinary meal — or frame it, and the name and weight stay forever. **Eat it or mount it.**
@@ -120,8 +129,26 @@ the fishing loot — the pack detects this and prints the one-command fix in cha
 | `card_species.png` | 28 species across rivers, lakes, oceans, swamps, jungles, the deeps — and the End |
 | `card_lures.png` | Learn a fish by catching it — then craft the lure that hunts it |
 | `card_tournaments.png` | Player-hosted tournaments: emerald buy-ins, live standings, podium trophies |
-| `card_progression.png` | Grind for legends: four rod tiers, five bait tiers, and a live Top Anglers leaderboard |
+| `card_progression.png` | Two paths to the top: six rods across two tracks, five bait tiers, and a live Top Anglers leaderboard |
 | *(your screenshots)* | Add 2–3 real in-game shots (F2): a weighed catch tooltip, a record broadcast in chat, the tournament bossbar mid-match, the Top Anglers sidebar. Real gameplay screenshots convert better than any promo art — put at least one before the cards. |
+
+## Changelog for the 1.3.0 uploads
+
+> **1.3.0 — Two Paths.** The rod ladder forks at the top, and both tracks are fully obtainable.
+> - **New: Naturalist's Rod** (Lure III, Luck of the Sea VI, unbreakable) — earned by landing a
+>   catch in all nine waters: rivers, lakes, open ocean, warm seas, frozen seas, the deeps,
+>   swamps, jungles, and the End. This also closes a gap for solo players, who previously had
+>   nothing between the Master's Rod and the Legend Rod because the Champion's Rod requires a
+>   tournament (2+ players).
+> - **New: Grandmaster's Rod** (Lure IV, Luck of the Sea VII, unbreakable) — the tournament
+>   capstone, for 5 wins, or 3 wins across 20 tournaments played.
+> - **The Legend Rod is no longer a catch-count grind.** It now requires every species on the
+>   ledger plus a 15 kg leviathan, instead of 250 catches. If you were working toward the old
+>   unlock you'll need to finish the ledger; anyone who already has the rod keeps it.
+> - The two capstones spend the same power budget differently — Luck of the Sea drives rarity,
+>   Lure drives bite speed. The Legend Rod hunts legends; the Grandmaster's Rod fishes about
+>   twice as fast.
+> - Angler's Almanac expanded to 29 pages, with a page for each rod path.
 
 ## Changelog for the 1.2.1 uploads (hotfix)
 

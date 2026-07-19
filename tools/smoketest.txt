@@ -1,6 +1,7 @@
 # Reel Rivals headless smoke test - run with: powershell -File rcon_cmd.ps1 -File smoketest.txt
 # Requires: a running server with the pack installed and RCON enabled (port 25575, password rrtest).
-# Covers: weigh pipeline + baked lore, re-weigh protection, lure conversion chain, records, almanac.
+# Covers: weigh pipeline + baked lore, re-weigh protection, lure conversion chain, records, almanac,
+# and the 1.3.0 rod enchantment levels (both new rods sit above vanilla max_level).
 forceload add 0 0 24 24
 summon minecraft:item 8 120 8 {NoGravity:1b,Tags:["smoke1"],Item:{id:"minecraft:tropical_fish",count:1,components:{"minecraft:custom_data":{reelrivals:{species:"golden_bass",unweighed:1b}}}}}
 execute positioned 8 120 8 run function reelrivals:catch/process
@@ -20,9 +21,20 @@ scoreboard players get #rec.storm_marlin rr.rec
 loot spawn 8 122 8 loot reelrivals:guide_book
 data get entity @e[type=item,nbt={Item:{id:"minecraft:written_book"}},limit=1] Item.components."minecraft:enchantment_glint_override"
 execute if data entity @e[type=item,nbt={Item:{id:"minecraft:written_book"}},limit=1] Item.components."minecraft:written_book_content".pages[19]
+# --- 1.3.0 gear: both new rods must accept above-vanilla enchantment levels ---
+# Naturalist's Rod (naturalist track mid-tier): Lure 3, Luck of the Sea 6, unbreakable
+summon minecraft:item 8 120 8 {NoGravity:1b,Tags:["smoke3"],Item:{id:"minecraft:fishing_rod",count:1,components:{"minecraft:enchantments":{levels:{"minecraft:lure":3,"minecraft:luck_of_the_sea":6}},"minecraft:unbreakable":{},"minecraft:custom_data":{reelrivals:{gear:"rod_naturalist"}},"minecraft:custom_model_data":790305}}}
+data get entity @e[type=item,tag=smoke3,limit=1] Item.components."minecraft:enchantments"
+# Grandmaster's Rod (circuit capstone): Lure 4 and LotS 7 are BOTH above vanilla max_level 3.
+# If either silently clamps to 3, this read-back is how we find out.
+summon minecraft:item 8 120 8 {NoGravity:1b,Tags:["smoke4"],Item:{id:"minecraft:fishing_rod",count:1,components:{"minecraft:enchantments":{levels:{"minecraft:lure":4,"minecraft:luck_of_the_sea":7}},"minecraft:unbreakable":{},"minecraft:custom_data":{reelrivals:{gear:"rod_grandmaster"}},"minecraft:custom_model_data":790306}}}
+data get entity @e[type=item,tag=smoke4,limit=1] Item.components."minecraft:enchantments"
+data get entity @e[type=item,tag=smoke4,limit=1] Item.components."minecraft:custom_data"
 # --- cleanup (resets test records; run before letting real players back on) ---
 kill @e[type=item,tag=smoke1]
 kill @e[type=item,tag=smoke2]
+kill @e[type=item,tag=smoke3]
+kill @e[type=item,tag=smoke4]
 kill @e[type=item,nbt={Item:{id:"minecraft:written_book"}}]
 scoreboard players set #rec.golden_bass rr.rec 0
 scoreboard players set #rec.golden_bass.kg rr.rec 0

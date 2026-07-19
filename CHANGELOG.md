@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.3.0] — Two Paths
+
+The rod ladder forks. Everyone still earns the Angler's and Master's Rods the same way, but the top end now runs down two separate tracks — and both are fully obtainable.
+
+- **New: Naturalist's Rod** (Lure III, Luck of the Sea VI, unbreakable) — earned by landing a catch in all nine waters: rivers, lakes, open ocean, warm seas, frozen seas, the deeps, swamps, jungles, and the End. This also fixes a real gap: the Champion's Rod needs 2+ players for a tournament, so solo players previously had nothing between the Master's Rod and the Legend Rod.
+- **New: Grandmaster's Rod** (Lure IV, Luck of the Sea VII, unbreakable) — the circuit capstone, for 5 tournament wins, or 3 wins across 20 tournaments played.
+- **The Legend Rod is no longer a catch-count grind.** It now requires *every species on the ledger* plus a 15 kg leviathan. The old gate was 250 catches, which rewarded AFK farming rather than actually fishing the world. **If you were working toward the old 250-catch unlock, you'll now need to finish the ledger** — anyone who already owns the rod keeps it.
+- The two capstones are deliberately different rather than one being strictly better: Luck of the Sea drives rarity, Lure drives bite speed. The Legend Rod hunts legends; the Grandmaster's Rod fishes about twice as fast.
+- Almanac expanded to 29 pages with a page for each rod path.
+
 ## [1.2.1] — Fair Play Hotfix
 
 Fixes the actionbar and tournament target bugs from 1.2.0.

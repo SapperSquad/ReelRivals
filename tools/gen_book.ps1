@@ -22,7 +22,7 @@ $order = @(
   "cover","contents1","contents2","basics",
   "rivers","lakes","ocean","warmice","deeps","swampjungle","newfish1","newfish2","abyssfish","schedules","legends",
   "lures101","lures_river","lures_lake","lures_ocean","lures_colddeep","lures_wilds","lures_rare","lures_new",
-  "bait","rods","tournaments","grind"
+  "bait","rods","rods_nat","rods_cir","tournaments","grind"
 )
 for ($i=0; $i -lt $order.Count; $i++) { $P[$order[$i]] = ($i + 1) }
 
@@ -85,7 +85,13 @@ $build = @{
  lures_rare = { ( @((Hdr 'Rare & Legend Lures')) + (Lure 'Coral Charm' "#B03060" 'Coral Empress') + (Lure 'Abyssal Beacon' "dark_purple" 'Abyssal Angler') + (Lure 'Void Line' "dark_purple" 'Void Skate') + (Lure 'Fossil Bait' "#5C3317" 'Ancient Coelacanth') + @((Foot)) ) }
  lures_new = { ( @((Hdr 'The King~s Lure')) + (Lure 'King~s Roe' "#8A6D00" 'King Sturgeon') + @( (SegI 'Craft from a heart of the sea + golden apple. Tempts the King anywhere, 1 in 10.\n' "dark_gray"), (Foot) ) ) }
  bait = { ( @((Hdr 'Bait Tins'), (SegI 'Eat to boost Luck.\n' "dark_gray")) + (Gear 'Tin I, II, III' "black" 'early recipes') + (Gear 'Tin IV, Luck 4' "dark_aqua" '100 catches') + (Gear 'King~s Feast, Luck 5' "#8A6D00" '500 catches') + @((Foot)) ) }
- rods = { ( @((Hdr 'Rods')) + (Gear 'Angler~s Rod' "#1F6E8C" '10 catches') + (Gear 'Master~s Rod' "dark_purple" '50 catches or a 10 kg fish') + (Gear 'Champion~s Rod' "#8A6D00" '5 tournaments or 1 win') + (Gear 'Legend Rod' "dark_aqua" '250 catches + a 15 kg fish') + @((Foot)) ) }
+ rods = { ( @((Hdr 'Rods')) + (Gear 'Angler~s Rod' "#1F6E8C" '10 catches') + (Gear 'Master~s Rod' "dark_purple" '50 catches or a 10 kg fish') + @(
+   (Seg 'Then the path splits:\n' "black"),
+   (Link 'Naturalist Path\n' 'rods_nat'),
+   (Link 'Circuit Path\n' 'rods_cir'),
+   (Foot) ) ) }
+ rods_nat = { ( @((Hdr 'Naturalist Path'), (SegI 'Earned by exploring.\n' "dark_gray")) + (Gear 'Naturalist~s Rod' "dark_green" 'a catch in all 9 waters') + (Gear 'Legend Rod' "dark_aqua" 'every species + a 15 kg fish') + @((Foot)) ) }
+ rods_cir = { ( @((Hdr 'Circuit Path'), (SegI 'Earned by winning.\n' "dark_gray")) + (Gear 'Champion~s Rod' "#8A6D00" '5 tournaments or 1 win') + (Gear 'Grandmaster~s Rod' "dark_purple" '5 wins, or 3 wins and 20 played') + @((Foot)) ) }
  tournaments = { @( (Hdr 'Tournaments'),
    (SegB 'rr.host' "dark_red"), (Seg ' host a match\n' "black"),
    (SegB 'rr.join' "dark_red"), (Seg ' enter & fish\n' "black"),
@@ -95,7 +101,7 @@ $build = @{
  grind = { @( (Hdr 'The Long Grind'),
    (Seg '100: Bait Tin IV\n' "black"),
    (Seg '15kg fish: Leviathan\n' "black"),
-   (Seg '250+Lev: Legend Rod\n' "black"),
+   (Seg 'All 28 + Lev: Legend Rod\n' "black"),
    (Seg '500: King~s Feast\n' "black"),
    (Seg '1000: Master of Deep\n' "black"),
    (SegI 'Luck V baits legends.\n' "dark_gray"), (Foot) ) }
