@@ -1,0 +1,43 @@
+{
+    "type":  "minecraft:crafting_shapeless",
+    "category":  "misc",
+    "ingredients":  [
+                        "minecraft:glow_berries",
+                        "minecraft:glow_berries",
+                        "minecraft:honey_bottle",
+                        "minecraft:bone_meal"
+                    ],
+    "result":  {
+                   "id":  "minecraft:dried_kelp",
+                   "count":  3,
+                   "components":  {
+                                      "minecraft:item_name":  "{\"text\":\"Bait Tin II\",\"color\":\"gold\"}",
+                                      "minecraft:lore":  [
+                                                             "{\"text\":\"Irresistible: Luck II for 4 min.\",\"color\":\"dark_gray\",\"italic\":true}"
+                                                         ],
+                                      "minecraft:food":  {
+                                                             "nutrition":  0,
+                                                             "saturation":  0.0,
+                                                             "can_always_eat":  true,
+                                                             "eat_seconds":  0.8,
+                                                             "effects":  [
+                                                                             {
+                                                                                 "effect":  {
+                                                                                                "id":  "minecraft:luck",
+                                                                                                "amplifier":  1,
+                                                                                                "duration":  4800
+                                                                                            },
+                                                                                 "probability":  1.0
+                                                                             }
+                                                                         ]
+                                                         },
+                                      "minecraft:custom_data":  {
+                                                                    "reelrivals":  {
+                                                                                       "gear":  "bait2"
+                                                                                   }
+                                                                },
+                                      "minecraft:max_stack_size":  16,
+                                      "minecraft:custom_model_data":  {"floats": [790202]}
+                                  }
+               }
+}

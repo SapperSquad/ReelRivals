@@ -1,0 +1,33 @@
+{
+    "type":  "minecraft:crafting_shapeless",
+    "category":  "equipment",
+    "ingredients":  [
+                        "minecraft:fishing_rod",
+                        "minecraft:copper_ingot",
+                        "minecraft:copper_ingot",
+                        "minecraft:copper_ingot",
+                        "minecraft:copper_ingot",
+                        "minecraft:string"
+                    ],
+    "result":  {
+                   "id":  "minecraft:fishing_rod",
+                   "count":  1,
+                   "components":  {
+                                      "minecraft:item_name":  "{\"text\":\"Angler\\u0027s Rod\",\"color\":\"aqua\"}",
+                                      "minecraft:lore":  [
+                                                             "{\"text\":\"A dependable copper-fitted rod.\",\"color\":\"dark_gray\",\"italic\":true}"
+                                                         ],
+                                      "minecraft:enchantments": {
+                                                                                    "minecraft:lure":  2,
+                                                                                    "minecraft:luck_of_the_sea":  2
+                                                                                },
+                                      "minecraft:max_damage":  96,
+                                      "minecraft:custom_data":  {
+                                                                    "reelrivals":  {
+                                                                                       "gear":  "rod_angler"
+                                                                                   }
+                                                                },
+                                      "minecraft:custom_model_data":  {"floats": [790301]}
+                                  }
+               }
+}

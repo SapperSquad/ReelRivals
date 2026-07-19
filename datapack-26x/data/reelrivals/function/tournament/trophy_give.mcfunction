@@ -1,0 +1,2 @@
+# Macro. Args: n (rank), title, color, tier, day, score.
+$give @a[tag=rr_rank$(n),limit=1] minecraft:tropical_fish[minecraft:item_name='{"text":"$(title)","color":"$(color)"}',minecraft:lore=['{"text":"Reel Rivals Tournament","color":"yellow","italic":false}','{"text":"Day $(day) - Score: $(score)","color":"gray","italic":false}'],minecraft:custom_data={reelrivals:{trophy:"$(tier)"}},minecraft:enchantment_glint_override=true,minecraft:max_stack_size=1,minecraft:custom_model_data={floats:[79010$(n)]}] 1

@@ -1,0 +1,11 @@
+{
+  "criteria": {
+    "c": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"golden_bass\",weighed:1b}}" } } ]
+      }
+    }
+  },
+  "rewards": { "function": "reelrivals:lure/learn_golden_bass" }
+}

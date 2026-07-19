@@ -1,0 +1,17 @@
+{
+  "parent": "reelrivals:first_catch",
+  "display": {
+    "icon": { "id": "minecraft:salmon" },
+    "title": { "text": "The Old King" },
+    "description": { "text": "Land the legendary King Sturgeon" },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "sturgeon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"king_sturgeon\",weighed:1b}}" } } ]
+      }
+    }
+  }
+}

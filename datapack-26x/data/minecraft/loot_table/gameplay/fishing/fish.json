@@ -1,0 +1,413 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 60,
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"cod\",unweighed:1b,common:1b}}" }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 25,
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"salmon\",unweighed:1b,common:1b}}" }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "weight": 2,
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"tropical\",unweighed:1b,common:1b}}" }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:pufferfish",
+          "weight": 13,
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"puffer\",unweighed:1b,common:1b}}" }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "weight": 6,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_river" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"golden_bass\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Golden Bass", "color": "gold" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Gleams in river shallows.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790001 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 6,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_river" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"copper_trout\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Copper Trout", "color": "#B87333" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Flashes copper in the current.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790009 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 5,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_river" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"whiskered_catfish\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Whiskered Catfish", "color": "gray" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Bottom-feeder with a temper.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790010 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 7,
+          "conditions": [
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_ocean" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_river" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:swamp" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_jungle" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:cold" } } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"lake_perch\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Lake Perch", "color": "yellow" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "A pondside staple.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790011 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 5,
+          "conditions": [
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_ocean" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_river" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:swamp" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_jungle" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:cold" } } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"mirror_carp\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Mirror Carp", "color": "white" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Scales like polished silver.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790012 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "weight": 5,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_ocean" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_river" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:swamp" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_jungle" } } },
+            { "condition": "minecraft:inverted", "term": { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:cold" } } },
+            { "condition": "minecraft:time_check", "clock": "minecraft:overworld", "value": { "min": 13000, "max": 23000 } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"moonlit_koi\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Moonlit Koi", "color": "light_purple" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Glows beneath a still moon.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790013 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 6,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:time_check", "clock": "minecraft:overworld", "value": { "min": 13000, "max": 23000 } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"midnight_eel\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Midnight Eel", "color": "dark_purple" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Only bites after dusk.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790002 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 7,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_ocean" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"silver_herring\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Silver Herring", "color": "gray" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Travels in glittering schools.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790014 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 5,
+          "quality": 2,
+          "conditions": [
+            { "condition": "minecraft:weather_check", "raining": true },
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_ocean" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"storm_marlin\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Storm Marlin", "color": "blue" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Rides the rain-churned swells.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790003 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 5,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:time_check", "clock": "minecraft:overworld", "value": { "min": 1000, "max": 12000 } },
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_ocean" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"sunfin_tuna\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Sunfin Tuna", "color": "yellow" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Chases the midday sun.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790016 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 5,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_deep_ocean" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"deep_grouper\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Deep Grouper", "color": "dark_blue" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Hauled up from the dark.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790015 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "weight": 2,
+          "quality": 3,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_deep_ocean" } },
+            { "condition": "minecraft:time_check", "clock": "minecraft:overworld", "value": { "min": 13000, "max": 23000 } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"abyssal_angler\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Abyssal Angler", "color": "dark_purple" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Its little light is the last thing minnows see.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790017 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 5,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:cold" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"frostfin_char\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Frostfin Char", "color": "aqua" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Thrives beneath the ice.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790004 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "weight": 5,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:warm_ocean" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"ember_snapper\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Ember Snapper", "color": "red" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Burns bright over coral beds.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790005 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 5,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:swamp" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"swamp_lurker\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Swamp Lurker", "color": "dark_green" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Something stirs the murk...", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790006 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "weight": 5,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_jungle" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"jungle_piranha\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Jungle Piranha", "color": "green" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Bites back.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790007 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 5,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_river" } },
+            { "condition": "minecraft:time_check", "clock": "minecraft:overworld", "value": { "min": 13000, "max": 23000 } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"mudskip_gar\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Mudskip Gar", "color": "#6B8E23" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Prowls the river banks by dark.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790018 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 4,
+          "quality": 2,
+          "conditions": [
+            { "condition": "minecraft:weather_check", "thundering": true },
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_ocean" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"thunderfin\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Thunderfin", "color": "yellow" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Surfaces only when the sky splits.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790019 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 4,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:cold" } },
+            { "condition": "minecraft:time_check", "clock": "minecraft:overworld", "value": { "min": 13000, "max": 23000 } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"glacier_pike\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Glacier Pike", "color": "#5F9EA0" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Hunts beneath midnight ice.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790020 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "weight": 3,
+          "quality": 3,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#reelrivals:warm_ocean" } },
+            { "condition": "minecraft:time_check", "clock": "minecraft:overworld", "value": { "min": 1000, "max": 12000 } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"coral_empress\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Coral Empress", "color": "#FF69B4" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Holds court over the reef at noon.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790021 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "weight": 2,
+          "quality": 3,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_jungle" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"emperor_arowana\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Emperor Arowana", "color": "gold" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "A living ingot of the canopy pools.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790022 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 6,
+          "quality": 1,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "dimension": "minecraft:the_end" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"void_skate\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Void Skate", "color": "#C8A2C8" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "It should not exist. Neither should your pond.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790023 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 1,
+          "quality": 4,
+          "conditions": [
+            { "condition": "minecraft:location_check", "predicate": { "biomes": "#minecraft:is_deep_ocean" } }
+          ],
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"ancient_coelacanth\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Ancient Coelacanth", "color": "#8B4513" } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Older than the ocean that hides it.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790024 }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 1,
+          "quality": 4,
+          "functions": [
+            { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"king_sturgeon\",unweighed:1b}}" },
+            { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "King Sturgeon", "color": "gold", "bold": true } },
+            { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "The one the old anglers whisper about.", "color": "dark_gray", "italic": true } ] },
+            { "function": "minecraft:set_custom_model_data", "value": 790008 }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "reelrivals:old_salt",
+  "display": {
+    "icon": { "id": "minecraft:conduit" },
+    "title": { "text": "Master of the Deep" },
+    "description": { "text": "One thousand catches. The water knows you by name." },
+    "frame": "challenge"
+  },
+  "criteria": { "granted": { "trigger": "minecraft:impossible" } }
+}

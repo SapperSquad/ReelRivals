@@ -1,0 +1,34 @@
+{
+    "type":  "minecraft:crafting_shapeless",
+    "category":  "equipment",
+    "ingredients":  [
+                        "minecraft:fishing_rod",
+                        "minecraft:diamond",
+                        "minecraft:diamond",
+                        "minecraft:gold_block",
+                        "minecraft:nautilus_shell"
+                    ],
+    "result":  {
+                   "id":  "minecraft:fishing_rod",
+                   "count":  1,
+                   "components":  {
+                                      "minecraft:item_name":  "{\"text\":\"Champion\\u0027s Rod\",\"color\":\"gold\",\"bold\":true}",
+                                      "minecraft:lore":  [
+                                                             "{\"text\":\"Earned on the tournament circuit.\",\"color\":\"dark_gray\",\"italic\":true}"
+                                                         ],
+                                      "minecraft:enchantments": {
+                                                                                    "minecraft:lure":  3,
+                                                                                    "minecraft:luck_of_the_sea":  6
+                                                                                },
+                                      "minecraft:unbreakable":  {
+
+                                                                },
+                                      "minecraft:custom_data":  {
+                                                                    "reelrivals":  {
+                                                                                       "gear":  "rod_champion"
+                                                                                   }
+                                                                },
+                                      "minecraft:custom_model_data":  {"floats": [790303]}
+                                  }
+               }
+}

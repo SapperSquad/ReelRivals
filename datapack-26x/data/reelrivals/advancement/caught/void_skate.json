@@ -1,0 +1,11 @@
+{
+  "criteria": {
+    "c": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"void_skate\",weighed:1b}}" } } ]
+      }
+    }
+  },
+  "rewards": { "function": "reelrivals:lure/learn_void_skate" }
+}

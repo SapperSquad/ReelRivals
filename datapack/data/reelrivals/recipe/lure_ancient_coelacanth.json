@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:slime_ball" },
+    { "item": "minecraft:string" },
+    { "item": "minecraft:bone_block" }
+  ],
+  "result": {
+    "id": "minecraft:slime_ball",
+    "count": 2,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"Fossil Bait\",\"color\":\"#8B4513\"}",
+      "minecraft:lore": [ "{\"text\":\"Targets: Ancient Coelacanth - deep oceans (1 in 7).\",\"color\":\"dark_gray\",\"italic\":true}", "{\"text\":\"Hold in your offhand while fishing. Consumed when it works.\",\"color\":\"dark_gray\",\"italic\":true}" ],
+      "minecraft:custom_data": { "reelrivals": { "lure": "ancient_coelacanth" } },
+      "minecraft:max_stack_size": 16,
+      "minecraft:custom_model_data": 790427
+    }
+  }
+}

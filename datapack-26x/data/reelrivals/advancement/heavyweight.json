@@ -1,0 +1,10 @@
+{
+  "parent": "reelrivals:first_catch",
+  "display": {
+    "icon": { "id": "minecraft:anvil" },
+    "title": { "text": "Heavyweight" },
+    "description": { "text": "Land a single fish of 10 kg or more" },
+    "frame": "goal"
+  },
+  "criteria": { "granted": { "trigger": "minecraft:impossible" } }
+}

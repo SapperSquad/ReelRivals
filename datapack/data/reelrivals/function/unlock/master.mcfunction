@@ -1,0 +1,3 @@
+# Reward for catching every species.
+give @s minecraft:dried_kelp[minecraft:custom_data={reelrivals:{gear:"bait3"}},minecraft:item_name='{"text":"Bait Tin III","color":"light_purple"}',minecraft:food={nutrition:0,saturation:0.0,can_always_eat:true,eat_seconds:0.8,effects:[{effect:{id:"minecraft:luck",amplifier:2,duration:6000},probability:1.0}]},minecraft:max_stack_size=16,minecraft:custom_model_data=790203] 8
+tellraw @a [{"text":"[Reel Rivals] ","color":"aqua"},{"selector":"@s","color":"yellow"},{"text":" has caught every species on the ledger — a true Master Angler!","color":"gold","bold":true}]

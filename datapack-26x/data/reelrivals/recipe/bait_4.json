@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:echo_shard",
+    "minecraft:chorus_fruit",
+    "minecraft:honey_bottle",
+    "minecraft:bone_meal"
+  ],
+  "result": {
+    "id": "minecraft:dried_kelp",
+    "count": 4,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"Abyssal Chum (Tin IV)\",\"color\":\"dark_aqua\"}",
+      "minecraft:lore": [ "{\"text\":\"From the deep, for the deep: Luck IV for 5 min.\",\"color\":\"dark_gray\",\"italic\":true}" ],
+      "minecraft:food": { "nutrition": 0, "saturation": 0.0, "can_always_eat": true, "eat_seconds": 0.8, "effects": [ { "effect": { "id": "minecraft:luck", "amplifier": 3, "duration": 6000 }, "probability": 1.0 } ] },
+      "minecraft:custom_data": { "reelrivals": { "gear": "bait4" } },
+      "minecraft:max_stack_size": 16,
+      "minecraft:custom_model_data": {"floats": [790204]}
+    }
+  }
+}

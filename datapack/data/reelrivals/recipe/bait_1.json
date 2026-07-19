@@ -1,0 +1,51 @@
+{
+    "type":  "minecraft:crafting_shapeless",
+    "category":  "misc",
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:wheat_seeds"
+                        },
+                        {
+                            "item":  "minecraft:wheat_seeds"
+                        },
+                        {
+                            "item":  "minecraft:rotten_flesh"
+                        },
+                        {
+                            "item":  "minecraft:bone_meal"
+                        }
+                    ],
+    "result":  {
+                   "id":  "minecraft:dried_kelp",
+                   "count":  3,
+                   "components":  {
+                                      "minecraft:item_name":  "{\"text\":\"Bait Tin I\",\"color\":\"yellow\"}",
+                                      "minecraft:lore":  [
+                                                             "{\"text\":\"Chum the water: Luck I for 4 min.\",\"color\":\"dark_gray\",\"italic\":true}"
+                                                         ],
+                                      "minecraft:food":  {
+                                                             "nutrition":  0,
+                                                             "saturation":  0.0,
+                                                             "can_always_eat":  true,
+                                                             "eat_seconds":  0.8,
+                                                             "effects":  [
+                                                                             {
+                                                                                 "effect":  {
+                                                                                                "id":  "minecraft:luck",
+                                                                                                "amplifier":  0,
+                                                                                                "duration":  4800
+                                                                                            },
+                                                                                 "probability":  1.0
+                                                                             }
+                                                                         ]
+                                                         },
+                                      "minecraft:custom_data":  {
+                                                                    "reelrivals":  {
+                                                                                       "gear":  "bait1"
+                                                                                   }
+                                                                },
+                                      "minecraft:max_stack_size":  16,
+                                      "minecraft:custom_model_data":  790201
+                                  }
+               }
+}

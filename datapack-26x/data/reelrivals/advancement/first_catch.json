@@ -1,0 +1,18 @@
+{
+  "parent": "reelrivals:root",
+  "display": {
+    "icon": { "id": "minecraft:cod" },
+    "title": { "text": "On the Scale" },
+    "description": { "text": "Land your first weighed fish" },
+    "frame": "task"
+  },
+  "criteria": {
+    "weighed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{weighed:1b}}" } } ]
+      }
+    }
+  },
+  "rewards": { "function": "reelrivals:unlock/bait1" }
+}

@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "hooked": {
+      "trigger": "minecraft:fishing_rod_hooked"
+    }
+  },
+  "rewards": {
+    "function": "reelrivals:catch/reel"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "reelrivals:regular",
+  "display": {
+    "icon": { "id": "minecraft:cod" },
+    "title": { "text": "Seasoned Angler" },
+    "description": { "text": "Weigh in 100 catches" },
+    "frame": "task"
+  },
+  "criteria": { "granted": { "trigger": "minecraft:impossible" } }
+}

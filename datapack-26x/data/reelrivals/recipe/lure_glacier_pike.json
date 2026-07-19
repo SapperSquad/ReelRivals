@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:slime_ball",
+    "minecraft:string",
+    "minecraft:blue_ice"
+  ],
+  "result": {
+    "id": "minecraft:slime_ball",
+    "count": 4,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"Glacier Hook\",\"color\":\"#5F9EA0\"}",
+      "minecraft:lore": [ "{\"text\":\"Targets: Glacier Pike - frozen waters, any hour.\",\"color\":\"dark_gray\",\"italic\":true}", "{\"text\":\"Hold in your offhand while fishing. Consumed when it works.\",\"color\":\"dark_gray\",\"italic\":true}" ],
+      "minecraft:custom_data": { "reelrivals": { "lure": "glacier_pike" } },
+      "minecraft:max_stack_size": 16,
+      "minecraft:custom_model_data": {"floats": [790423]}
+    }
+  }
+}

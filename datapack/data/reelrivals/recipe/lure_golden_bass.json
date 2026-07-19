@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:slime_ball" },
+    { "item": "minecraft:string" },
+    { "item": "minecraft:gold_nugget" },
+    { "item": "minecraft:wheat_seeds" }
+  ],
+  "result": {
+    "id": "minecraft:slime_ball",
+    "count": 4,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"Gilded Spinner\",\"color\":\"gold\"}",
+      "minecraft:lore": [ "{\"text\":\"Targets: Golden Bass - rivers.\",\"color\":\"dark_gray\",\"italic\":true}", "{\"text\":\"Hold in your offhand while fishing. Consumed when it works.\",\"color\":\"dark_gray\",\"italic\":true}" ],
+      "minecraft:custom_data": { "reelrivals": { "lure": "golden_bass" } },
+      "minecraft:max_stack_size": 16,
+      "minecraft:custom_model_data": 790404
+    }
+  }
+}

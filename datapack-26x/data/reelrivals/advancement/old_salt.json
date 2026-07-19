@@ -1,0 +1,10 @@
+{
+  "parent": "reelrivals:seasoned_angler",
+  "display": {
+    "icon": { "id": "minecraft:dried_kelp" },
+    "title": { "text": "Old Salt" },
+    "description": { "text": "Weigh in 500 catches" },
+    "frame": "goal"
+  },
+  "criteria": { "granted": { "trigger": "minecraft:impossible" } }
+}

@@ -1,0 +1,37 @@
+# Reel Rivals headless smoke test - run with: powershell -File rcon_cmd.ps1 -File smoketest.txt
+# Requires: a running server with the pack installed and RCON enabled (port 25575, password rrtest).
+# Covers: weigh pipeline + baked lore, re-weigh protection, lure conversion chain, records, almanac.
+forceload add 0 0 24 24
+summon minecraft:item 8 120 8 {NoGravity:1b,Tags:["smoke1"],Item:{id:"minecraft:tropical_fish",count:1,components:{"minecraft:custom_data":{reelrivals:{species:"golden_bass",unweighed:1b}}}}}
+execute positioned 8 120 8 run function reelrivals:catch/process
+data get entity @e[type=item,tag=smoke1,limit=1] Item.components."minecraft:custom_data"
+data get entity @e[type=item,tag=smoke1,limit=1] Item.components."minecraft:lore"
+scoreboard players get #rec.golden_bass rr.rec
+execute positioned 8 120 8 run function reelrivals:catch/process
+data get entity @e[type=item,tag=smoke1,limit=1] Item.components."minecraft:lore"
+summon minecraft:item 8 120 8 {NoGravity:1b,Tags:["smoke2"],Item:{id:"minecraft:cod",count:1,components:{"minecraft:custom_data":{reelrivals:{species:"cod",unweighed:1b,common:1b}}}}}
+execute as @e[type=item,tag=smoke2,limit=1] at @s run function reelrivals:lure/try {species:"storm_marlin",chance:100,disp:"Storm Marlin",color:"blue",cmd:"790003"}
+scoreboard players get #conv rr.t
+data get entity @e[type=item,tag=smoke2,limit=1] Item.components."minecraft:item_name"
+scoreboard players set #conv rr.t 0
+execute positioned 8 120 8 run function reelrivals:catch/process
+data get entity @e[type=item,tag=smoke2,limit=1] Item.components."minecraft:lore"
+scoreboard players get #rec.storm_marlin rr.rec
+loot spawn 8 122 8 loot reelrivals:guide_book
+data get entity @e[type=item,nbt={Item:{id:"minecraft:written_book"}},limit=1] Item.components."minecraft:enchantment_glint_override"
+execute if data entity @e[type=item,nbt={Item:{id:"minecraft:written_book"}},limit=1] Item.components."minecraft:written_book_content".pages[19]
+# --- cleanup (resets test records; run before letting real players back on) ---
+kill @e[type=item,tag=smoke1]
+kill @e[type=item,tag=smoke2]
+kill @e[type=item,nbt={Item:{id:"minecraft:written_book"}}]
+scoreboard players set #rec.golden_bass rr.rec 0
+scoreboard players set #rec.golden_bass.kg rr.rec 0
+scoreboard players set #rec.golden_bass.fr rr.rec 0
+scoreboard players set #rec.golden_bass.day rr.rec 0
+scoreboard players set #rec.storm_marlin rr.rec 0
+scoreboard players set #rec.storm_marlin.kg rr.rec 0
+scoreboard players set #rec.storm_marlin.fr rr.rec 0
+scoreboard players set #rec.storm_marlin.day rr.rec 0
+scoreboard players set #last rr.t 0
+scoreboard players set #conv rr.t 0
+forceload remove all
