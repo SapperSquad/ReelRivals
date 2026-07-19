@@ -1,0 +1,10 @@
+{
+  "parent": "reelrivals:champion",
+  "display": {
+    "icon": { "id": "minecraft:emerald_block" },
+    "title": { "text": "Grandmaster" },
+    "description": { "text": "Five tournament wins - the circuit has no answer for you" },
+    "frame": "challenge"
+  },
+  "criteria": { "granted": { "trigger": "minecraft:impossible" } }
+}

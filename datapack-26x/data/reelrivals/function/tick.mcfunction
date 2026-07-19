@@ -32,15 +32,24 @@ scoreboard players reset @a rr.start
 execute as @a[scores={rr.join=1..}] run function reelrivals:tournament/join
 scoreboard players reset @a rr.join
 
-# gear unlock milestones
+# gear unlocks - shared base every angler walks
 execute as @a[scores={rr.caught=10..},tag=!rr_u1] run function reelrivals:unlock/tier1
 execute as @a[scores={rr.caught=50..},tag=!rr_u2] run function reelrivals:unlock/tier2
 execute as @a[tag=rr_hw,tag=!rr_u2] run function reelrivals:unlock/tier2
+
+# circuit track (tournament results): Champion's Rod -> Grandmaster's Rod
 execute as @a[scores={rr.played=5..},tag=!rr_u3] run function reelrivals:unlock/tier3
 execute as @a[scores={rr.wins=1..},tag=!rr_u3] run function reelrivals:unlock/tier3
-# the long grind: 100 / 250+leviathan / 500 / 1000 catches
+execute as @a[scores={rr.wins=5..},tag=!rr_u9] run function reelrivals:unlock/grandmaster
+execute as @a[scores={rr.wins=3..,rr.played=20..},tag=!rr_u9] run function reelrivals:unlock/grandmaster
+
+# naturalist track (species + geography): Naturalist's Rod -> Legend Rod.
+# The Naturalist's Rod fires from the reelrivals:naturalist advancement reward, not here.
+# Legend now needs every species on the ledger plus a leviathan (15 kg+), not a catch count.
+execute as @a[advancements={reelrivals:master_angler=true},tag=rr_hw2,tag=!rr_u5] run function reelrivals:unlock/legend
+
+# the long grind: 100 / 500 / 1000 catches
 execute as @a[scores={rr.caught=100..},tag=!rr_u4] run function reelrivals:unlock/bait4
-execute as @a[scores={rr.caught=250..},tag=rr_hw2,tag=!rr_u5] run function reelrivals:unlock/legend
 execute as @a[scores={rr.caught=500..},tag=!rr_u6] run function reelrivals:unlock/bait5
 execute as @a[scores={rr.caught=1000..},tag=!rr_u7] run function reelrivals:unlock/master_deep
 
