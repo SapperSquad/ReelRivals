@@ -1,0 +1,13 @@
+# Local test servers - full Mojang server jars + world saves + logs.
+# Not source, too large for git, and redistributing the server jar isn't
+# permitted under Mojang's EULA. Regenerate locally with tools/ scripts instead.
+tools/vanilla-server/
+tools/vanilla-server-26/
+
+# Build output - published to GitHub Releases and Modrinth/CurseForge directly,
+# not tracked in git history (avoids bloating the repo with binary diffs).
+dist/
+
+# OS cruft
+Thumbs.db
+.DS_Store
