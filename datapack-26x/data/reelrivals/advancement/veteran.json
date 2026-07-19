@@ -1,0 +1,10 @@
+{
+  "parent": "reelrivals:root",
+  "display": {
+    "icon": { "id": "minecraft:emerald" },
+    "title": { "text": "Circuit Regular" },
+    "description": { "text": "Fish in 5 tournaments" },
+    "frame": "goal"
+  },
+  "criteria": { "granted": { "trigger": "minecraft:impossible" } }
+}

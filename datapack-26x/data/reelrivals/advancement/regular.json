@@ -1,0 +1,10 @@
+{
+  "parent": "reelrivals:first_catch",
+  "display": {
+    "icon": { "id": "minecraft:fishing_rod" },
+    "title": { "text": "Regular at the Docks" },
+    "description": { "text": "Weigh in 10 catches" },
+    "frame": "task"
+  },
+  "criteria": { "granted": { "trigger": "minecraft:impossible" } }
+}

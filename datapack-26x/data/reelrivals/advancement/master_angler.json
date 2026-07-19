@@ -1,0 +1,41 @@
+{
+  "parent": "reelrivals:first_catch",
+  "display": {
+    "icon": { "id": "minecraft:tropical_fish" },
+    "title": { "text": "Master Angler" },
+    "description": { "text": "Catch every species on the ledger" },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "cod": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"cod\",weighed:1b}}" } } ] } },
+    "salmon": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"salmon\",weighed:1b}}" } } ] } },
+    "tropical": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"tropical\",weighed:1b}}" } } ] } },
+    "puffer": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"puffer\",weighed:1b}}" } } ] } },
+    "golden_bass": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"golden_bass\",weighed:1b}}" } } ] } },
+    "midnight_eel": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"midnight_eel\",weighed:1b}}" } } ] } },
+    "storm_marlin": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"storm_marlin\",weighed:1b}}" } } ] } },
+    "frostfin_char": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"frostfin_char\",weighed:1b}}" } } ] } },
+    "ember_snapper": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"ember_snapper\",weighed:1b}}" } } ] } },
+    "swamp_lurker": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"swamp_lurker\",weighed:1b}}" } } ] } },
+    "jungle_piranha": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"jungle_piranha\",weighed:1b}}" } } ] } },
+    "king_sturgeon": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"king_sturgeon\",weighed:1b}}" } } ] } },
+    "copper_trout": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"copper_trout\",weighed:1b}}" } } ] } },
+    "whiskered_catfish": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"whiskered_catfish\",weighed:1b}}" } } ] } },
+    "lake_perch": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"lake_perch\",weighed:1b}}" } } ] } },
+    "mirror_carp": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"mirror_carp\",weighed:1b}}" } } ] } },
+    "moonlit_koi": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"moonlit_koi\",weighed:1b}}" } } ] } },
+    "silver_herring": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"silver_herring\",weighed:1b}}" } } ] } },
+    "deep_grouper": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"deep_grouper\",weighed:1b}}" } } ] } },
+    "sunfin_tuna": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"sunfin_tuna\",weighed:1b}}" } } ] } },
+    "abyssal_angler": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"abyssal_angler\",weighed:1b}}" } } ] } },
+    "mudskip_gar": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"mudskip_gar\",weighed:1b}}" } } ] } },
+    "thunderfin": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"thunderfin\",weighed:1b}}" } } ] } },
+    "glacier_pike": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"glacier_pike\",weighed:1b}}" } } ] } },
+    "coral_empress": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"coral_empress\",weighed:1b}}" } } ] } },
+    "emperor_arowana": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"emperor_arowana\",weighed:1b}}" } } ] } },
+    "void_skate": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"void_skate\",weighed:1b}}" } } ] } },
+    "ancient_coelacanth": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "predicates": { "minecraft:custom_data": "{reelrivals:{species:\"ancient_coelacanth\",weighed:1b}}" } } ] } }
+  },
+  "requirements": [ ["cod"], ["salmon"], ["tropical"], ["puffer"], ["golden_bass"], ["midnight_eel"], ["storm_marlin"], ["frostfin_char"], ["ember_snapper"], ["swamp_lurker"], ["jungle_piranha"], ["king_sturgeon"], ["copper_trout"], ["whiskered_catfish"], ["lake_perch"], ["mirror_carp"], ["moonlit_koi"], ["silver_herring"], ["deep_grouper"], ["sunfin_tuna"], ["abyssal_angler"], ["mudskip_gar"], ["thunderfin"], ["glacier_pike"], ["coral_empress"], ["emperor_arowana"], ["void_skate"], ["ancient_coelacanth"] ],
+  "rewards": { "function": "reelrivals:unlock/master" }
+}

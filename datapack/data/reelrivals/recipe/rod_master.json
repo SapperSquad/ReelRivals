@@ -1,0 +1,51 @@
+{
+    "type":  "minecraft:crafting_shapeless",
+    "category":  "equipment",
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:fishing_rod"
+                        },
+                        {
+                            "item":  "minecraft:gold_ingot"
+                        },
+                        {
+                            "item":  "minecraft:gold_ingot"
+                        },
+                        {
+                            "item":  "minecraft:gold_ingot"
+                        },
+                        {
+                            "item":  "minecraft:gold_ingot"
+                        },
+                        {
+                            "item":  "minecraft:amethyst_shard"
+                        },
+                        {
+                            "item":  "minecraft:amethyst_shard"
+                        }
+                    ],
+    "result":  {
+                   "id":  "minecraft:fishing_rod",
+                   "count":  1,
+                   "components":  {
+                                      "minecraft:item_name":  "{\"text\":\"Master\\u0027s Rod\",\"color\":\"light_purple\"}",
+                                      "minecraft:lore":  [
+                                                             "{\"text\":\"Gold guides, amethyst-tuned reel.\",\"color\":\"dark_gray\",\"italic\":true}"
+                                                         ],
+                                      "minecraft:enchantments":  {
+                                                                     "levels":  {
+                                                                                    "minecraft:lure":  3,
+                                                                                    "minecraft:luck_of_the_sea":  4,
+                                                                                    "minecraft:unbreaking":  3
+                                                                                }
+                                                                 },
+                                      "minecraft:max_damage":  128,
+                                      "minecraft:custom_data":  {
+                                                                    "reelrivals":  {
+                                                                                       "gear":  "rod_master"
+                                                                                   }
+                                                                },
+                                      "minecraft:custom_model_data":  790302
+                                  }
+               }
+}

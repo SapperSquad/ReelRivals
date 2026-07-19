@@ -1,0 +1,10 @@
+{
+  "parent": "reelrivals:seasoned_angler",
+  "display": {
+    "icon": { "id": "minecraft:netherite_ingot" },
+    "title": { "text": "Stuff of Legends" },
+    "description": { "text": "250 catches and a leviathan on the line - the Legend Rod is yours" },
+    "frame": "challenge"
+  },
+  "criteria": { "granted": { "trigger": "minecraft:impossible" } }
+}

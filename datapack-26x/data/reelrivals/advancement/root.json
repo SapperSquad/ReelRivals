@@ -1,0 +1,14 @@
+{
+  "display": {
+    "icon": { "id": "minecraft:fishing_rod" },
+    "title": { "text": "Reel Rivals" },
+    "description": { "text": "Competitive fishing — every catch has a weight" },
+    "background": "minecraft:textures/block/prismarine_bricks.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "tick": { "trigger": "minecraft:tick" }
+  },
+  "rewards": { "function": "reelrivals:guide" }
+}

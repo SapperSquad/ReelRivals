@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:heart_of_the_sea" },
+    { "item": "minecraft:golden_apple" },
+    { "item": "minecraft:chorus_fruit" },
+    { "item": "minecraft:honey_bottle" }
+  ],
+  "result": {
+    "id": "minecraft:dried_kelp",
+    "count": 2,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"King's Feast (Tin V)\",\"color\":\"gold\"}",
+      "minecraft:lore": [ "{\"text\":\"A banquet no legend can refuse: Luck V for 8 min.\",\"color\":\"dark_gray\",\"italic\":true}" ],
+      "minecraft:food": { "nutrition": 0, "saturation": 0.0, "can_always_eat": true, "eat_seconds": 0.8, "effects": [ { "effect": { "id": "minecraft:luck", "amplifier": 4, "duration": 9600 }, "probability": 1.0 } ] },
+      "minecraft:custom_data": { "reelrivals": { "gear": "bait5" } },
+      "minecraft:max_stack_size": 16,
+      "minecraft:custom_model_data": 790205
+    }
+  }
+}
