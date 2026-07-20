@@ -23,13 +23,24 @@ jobs:
       - name: Post to Discord
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          RELEASE_NAME: ${{ github.event.release.name || inputs.title }}
-          RELEASE_BODY: ${{ github.event.release.body || inputs.body }}
+          EVENT_NAME: ${{ github.event_name }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          RELEASE_BODY: ${{ github.event.release.body }}
+          INPUT_TITLE: ${{ github.event.inputs.title }}
+          INPUT_BODY: ${{ github.event.inputs.body }}
           MODRINTH_URL: "https://modrinth.com/mod/reel-rivals"
         run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            TITLE="$INPUT_TITLE"
+            BODY="$INPUT_BODY"
+          else
+            TITLE="$RELEASE_NAME"
+            BODY="$RELEASE_BODY"
+          fi
+
           PAYLOAD=$(jq -n \
-            --arg title "$RELEASE_NAME" \
-            --arg desc "$RELEASE_BODY" \
+            --arg title "$TITLE" \
+            --arg desc "$BODY" \
             --arg modrinth "$MODRINTH_URL" \
             '{
               embeds: [{
