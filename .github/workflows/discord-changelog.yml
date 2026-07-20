@@ -1,0 +1,43 @@
+name: Post release to Discord changelog
+
+# Replaces Discord's built-in /github webhook formatter, which can't be customized
+# (fixed template: title links to GitHub, no room for a Modrinth link or restyling).
+# This builds the embed ourselves and posts it to the plain Discord webhook URL.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Release title (for a manual test post)"
+        default: "Test Release"
+      body:
+        description: "Changelog body (for a manual test post)"
+        default: "Testing the Discord embed formatting."
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post to Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          RELEASE_NAME: ${{ github.event.release.name || inputs.title }}
+          RELEASE_BODY: ${{ github.event.release.body || inputs.body }}
+          MODRINTH_URL: "https://modrinth.com/mod/reel-rivals"
+        run: |
+          PAYLOAD=$(jq -n \
+            --arg title "$RELEASE_NAME" \
+            --arg desc "$RELEASE_BODY" \
+            --arg modrinth "$MODRINTH_URL" \
+            '{
+              embeds: [{
+                title: $title,
+                url: $modrinth,
+                description: ($desc + "\n\n📥 **Download:** " + $modrinth),
+                color: 16762443,
+                footer: { text: "SapperSquad · Reel Rivals" }
+              }]
+            }')
+          curl -sf -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
