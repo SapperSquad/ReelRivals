@@ -180,5 +180,6 @@ the fishing loot — the pack detects this and prints the one-command fix in cha
 > a live Top Anglers leaderboard, player-hosted buy-in tournaments with automatic payouts
 > and trophies, and the 27-page Angler's Almanac.
 
-Categories: `game-mechanics`, `minigame`, `adventure`. License: **MIT** (SapperSquad's call
-2026-07-28) — set it on the live Modrinth project's settings page to match.
+Categories: `game-mechanics`, `minigame`, `adventure`. License: split policy (SapperSquad,
+2026-07-28) — set **All Rights Reserved** on the live Modrinth project's settings page;
+the GitHub repo carries an MIT LICENSE.
