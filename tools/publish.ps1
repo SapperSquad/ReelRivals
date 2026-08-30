@@ -4,15 +4,17 @@
 # way build.ps1 drops to raw System.IO.Compression instead of Compress-Archive.
 #
 # ONE-TIME SETUP before this will work:
-#   1. $ModrinthProjectId below is already set to Reel Rivals' real project id.
-#   2. In a normal terminal (not committed anywhere), set persistent env vars:
+#   1. Both project ids are baked in below (Modrinth kJZva5Zm, CurseForge 1616194).
+#      Do NOT rely on the *_PROJECT_ID env vars: they are user-wide and shared by every
+#      mod on this machine, so whichever project published last owns them. Publishing to
+#      whatever another project last pointed at is exactly the accident this prevents.
+#   2. In a normal terminal (not committed anywhere), set the TOKENS only:
 #        setx MODRINTH_TOKEN "mrp_xxxxxxxxxxxxxxxxxxxx"
 #        setx CURSEFORGE_TOKEN "xxxxxxxxxxxxxxxxxxxxxx"
-#        setx CURSEFORGE_PROJECT_ID "123456"    # numeric, from "About Project" on CurseForge
 #      Open a NEW terminal afterwards so the vars are picked up.
 #
-# CurseForge is skipped unless it has a project id (parameter or env var), and the script
-# now SAYS so rather than skipping quietly. Modrinth needs no extra setup.
+# CurseForge is skipped (loudly) when CURSEFORGE_TOKEN is unset, so a Modrinth-only
+# publish still works. Pass -CurseForgeProjectId / -ModrinthProjectId for a one-off.
 #
 # USAGE (run build.ps1 first so dist/ has the zips for -Version):
 #   powershell -File tools\publish.ps1 -Version 1.3.0 -ChangelogFile tools\changelog-current.md
@@ -42,11 +44,22 @@ $ErrorActionPreference = "Stop"
 # contain hyphens, which aren't valid base62). Confirmed via GET /v2/project/reel-rivals.
 $ModrinthProjectId = "kjZva5Zm"           # Reel Rivals' real Modrinth project id
 
-# CurseForge project id (numeric, from the project's "About Project" sidebar).
-# Resolution order: -CurseForgeProjectId parameter > CURSEFORGE_PROJECT_ID env var > unset.
-# Set it once with:  setx CURSEFORGE_PROJECT_ID "123456"   (then open a NEW terminal)
-if ($CurseForgeProjectId -eq 0 -and $env:CURSEFORGE_PROJECT_ID) {
-    $CurseForgeProjectId = [int]$env:CURSEFORGE_PROJECT_ID
+# Reel Rivals' CurseForge project id, baked in for the same reason the Modrinth one
+# above is. CURSEFORGE_PROJECT_ID is a USER-WIDE env var shared by every mod on this
+# machine, so whichever project published last owns it - reading it means publishing
+# wherever some other project happened to point. This is not hypothetical: on
+# 2026-08-29 Pantrywork's four jars were aimed at Reel Rivals (1616194) because the
+# var still held this project's id, and they failed only because a data-pack project
+# rejects the NeoForge loader id. A mod-to-mod mix-up would have gone through.
+# Id verified 2026-08-30 against the live project page.
+# Resolution order: -CurseForgeProjectId parameter > baked-in id > env var.
+$CurseForgeProjectIdDefault = 1616194     # Reel Rivals (Minecraft > Data Packs)
+if ($CurseForgeProjectId -eq 0) { $CurseForgeProjectId = $CurseForgeProjectIdDefault }
+if ($env:CURSEFORGE_PROJECT_ID -and [int]$env:CURSEFORGE_PROJECT_ID -ne $CurseForgeProjectId) {
+    Write-Warning "CURSEFORGE_PROJECT_ID env var is '$($env:CURSEFORGE_PROJECT_ID)' but this script targets '$CurseForgeProjectId' (Reel Rivals) - using the latter."
+}
+if ($env:MODRINTH_PROJECT_ID -and $env:MODRINTH_PROJECT_ID -ne $ModrinthProjectId) {
+    Write-Warning "MODRINTH_PROJECT_ID env var is '$($env:MODRINTH_PROJECT_ID)' but this script targets '$ModrinthProjectId' (Reel Rivals) - using the latter."
 }
 
 $proj = Split-Path $PSScriptRoot -Parent
@@ -61,7 +74,13 @@ $changelog = [string](Get-Content $ChangelogFile -Raw -Encoding UTF8)
 $ModrinthToken = $env:MODRINTH_TOKEN
 $CurseForgeToken = $env:CURSEFORGE_TOKEN
 if (-not $SkipModrinth -and -not $DryRun -and -not $ModrinthToken) { throw "MODRINTH_TOKEN env var is not set. See the header of this script." }
-if (-not $SkipCurseForge -and -not $DryRun -and $CurseForgeProjectId -ne 0 -and -not $CurseForgeToken) { throw "CURSEFORGE_TOKEN env var is not set. See the header of this script." }
+# The project id is baked in now, so a missing CF token is the only thing that can
+# take CurseForge out of the run. Skip loudly rather than throwing - Modrinth-only
+# publishes are a real workflow here (1.3.0 shipped that way).
+if (-not $SkipCurseForge -and -not $DryRun -and -not $CurseForgeToken) {
+    Write-Warning "CURSEFORGE_TOKEN env var is not set - CurseForge will be SKIPPED this run (Modrinth only)."
+    $SkipCurseForge = $true
+}
 
 Add-Type -AssemblyName System.Net.Http
 
