@@ -22,7 +22,7 @@ $order = @(
   "cover","contents1","contents2","basics",
   "rivers","lakes","ocean","warmice","deeps","swampjungle","newfish1","newfish2","abyssfish","schedules","legends",
   "lures101","lures_river","lures_lake","lures_ocean","lures_colddeep","lures_wilds","lures_rare","lures_new",
-  "bait","rods","rods_nat","rods_cir","tournaments","grind"
+  "bait","rods","rods_nat","rods_cir","tournaments","market","grind"
 )
 for ($i=0; $i -lt $order.Count; $i++) { $P[$order[$i]] = ($i + 1) }
 
@@ -46,6 +46,7 @@ $build = @{
    (Link 'Wild Lures' 'lures_wilds'), (Seg ' ' "gray"), (Link 'Rare Lures\n' 'lures_rare'),
    (Link 'Bait Tins' 'bait'), (Seg '  ' "gray"), (Link 'Rods\n' 'rods'),
    (Link 'Tournaments' 'tournaments'), (Seg ' ' "gray"), (Link 'The Grind\n' 'grind'),
+   (Link 'Market & Bounty\n' 'market'),
    (Seg '\n' "black"), (Link '<< Fish' 'contents1')
  ) }
  basics = { @( (Hdr 'How It Works'),
@@ -98,6 +99,12 @@ $build = @{
    (SegB 'rr.top' "dark_red"), (Seg ' leaderboard\n' "black"),
    (SegB 'rr.records' "dark_red"), (Seg ' the ledger\n' "black"),
    (SegI 'Type /trigger then the name. Hosts set scoring, target, buy-in, gear & payout.\n' "dark_gray"), (Foot) ) }
+ market = { @( (Hdr 'Market & Bounty'),
+   (SegB 'rr.market' "dark_green"), (Seg ' sells the fish in your hand by weight.\n' "black"),
+   (SegB 'rr.sellall' "dark_green"), (Seg ' sells your whole catch, flat rate.\n' "black"),
+   (SegB 'rr.stats' "dark_aqua"), (Seg ' your Angler~s Log.\n' "black"),
+   (Seg 'A rotating Bounty fish pays emeralds to claim and sells double.\n' "black"),
+   (Foot) ) }
  grind = { @( (Hdr 'The Long Grind'),
    (Seg '100: Bait Tin IV\n' "black"),
    (Seg '15kg fish: Leviathan\n' "black"),
@@ -146,6 +153,6 @@ PAGES
 }
 '@
 $out = $out.Replace("PAGES", ($pageJson -join ",`n")).Replace("~","'")
-$path = "%USERPROFILE%\Documents\ReelRivals\datapack\data\reelrivals\loot_table\guide_book.json"
+$path = Join-Path (Split-Path -Parent $PSScriptRoot) 'datapack\data\reelrivals\loot_table\guide_book.json'
 [System.IO.File]::WriteAllText($path, $out, $enc)
 try { Get-Content $path -Raw -Encoding UTF8 | ConvertFrom-Json | Out-Null; "JSON valid, pages: $($pages.Count)" } catch { "JSON INVALID: " + $_.Exception.Message }

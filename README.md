@@ -192,3 +192,11 @@ fishing loot that way stack with this pack's override; only another pack/mod *re
 - Roadmap ideas from design: moving hotspot markers with bubble particles (bonus loot for casting near them),
   upgradeable fishing boats + fish-finder GUI (needs a NeoForge companion mod), Modrinth release as a
   datapack-in-jar.
+
+## License
+
+The source code in this repository is MIT-licensed - see [LICENSE](LICENSE).
+The brand assets in [promo/](promo/) (banner, icon, gallery art) and the
+store-page copy in [PUBLISHING.md](PUBLISHING.md) are (c) SapperSquad, all
+rights reserved - see [promo/LICENSE](promo/LICENSE). Store listings on
+Modrinth/CurseForge are published All Rights Reserved by policy.
