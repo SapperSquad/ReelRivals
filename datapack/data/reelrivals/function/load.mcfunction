@@ -26,6 +26,13 @@ scoreboard objectives add rr.guide trigger
 scoreboard objectives add rr.top trigger
 scoreboard objectives add rr.target trigger
 scoreboard objectives add rr.gear trigger
+# 1.4.0: bounty board, fish market, angler's log
+scoreboard objectives add rr.market trigger
+scoreboard objectives add rr.sellall trigger
+scoreboard objectives add rr.stats trigger
+scoreboard objectives add rr.pb dummy
+scoreboard objectives add rr.bounties dummy
+scoreboard objectives add rr.sold dummy
 scoreboard objectives modify rr.caught displayname [{"text":"Top Anglers ","color":"aqua","bold":true},{"text":"(catches)","color":"gray"}]
 scoreboard players add #topshown rr.t 0
 scoreboard players add #target rr.t 0
@@ -47,6 +54,16 @@ scoreboard players add #state rr.t 0
 scoreboard players add #pot rr.t 0
 scoreboard players add #last rr.t 0
 scoreboard players add #frenzy rr.t 0
+
+# 1.4.0 bounty/market tunables (admins may change these live)
+scoreboard players add #bstart rr.t 0
+scoreboard players add #bperiod rr.t 0
+execute unless score #bperiod rr.t matches 1.. run scoreboard players set #bperiod rr.t 7
+scoreboard players add #emper rr.t 0
+execute unless score #emper rr.t matches 1.. run scoreboard players set #emper rr.t 1
+scoreboard players add #bpick rr.t 0
+# seed a bounty on first ever load (active:0b until bounty/rotate picks one)
+execute unless data storage reelrivals:bounty active run data merge storage reelrivals:bounty {species:"",disp:"none",color:"gray",active:0b}
 
 # record slates (weight in 0.1 kg units, plus display kg/fr and in-game day)
 scoreboard players add #rec.cod rr.rec 0
@@ -173,3 +190,6 @@ scoreboard players add #rec.ancient_coelacanth rr.rec 0
 scoreboard players add #rec.ancient_coelacanth.kg rr.rec 0
 scoreboard players add #rec.ancient_coelacanth.fr rr.rec 0
 scoreboard players add #rec.ancient_coelacanth.day rr.rec 0
+
+# 1.4.0: ensure a bounty is active (only rolls if none is set or the period elapsed)
+function reelrivals:bounty/rotate

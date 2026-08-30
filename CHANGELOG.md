@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.1] — Wider Waters
+
+Reach, not features. The same pack now covers six more Minecraft versions, and one real bug is fixed.
+
+- **Supports 1.21.10, 1.21.11, 26.1, 26.1.1, 26.1.2 and 26.2 from one artifact.** The 26.x build now declares `min_format` 88 / `max_format` 107 instead of a single `pack_format`. Verified live on 1.21.10 (format 88), 1.21.11 (94) and 26.1.2 (101); 26.2 (107) is its native target. 26.1 and 26.1.1 are inferred from 26.1.2 rather than individually tested.
+- **Fixed a silent bug shipped in 1.4.0's 26.2 build.** Loot tables set model IDs with `{"function":"minecraft:set_custom_model_data","value":N}`, which still parses on 26.x but produces an *empty* component — so all 24 custom species lost their model IDs and no resource pack could re-skin them. The correct modern form is `"floats":{"mode":"replace_all","values":[N]}`, established by experiment. `port_to_26.ps1` now rewrites it. The 1.21.1 build was never affected.
+- No gameplay changes.
+
+## [1.4.0] — Bait the Hook
+
+Three ways to keep coming back to the water.
+
+- **The Bounty Board.** There's always an active bounty species. Land it to claim **16 emeralds** (once per rotation), and it sells for **double** at the market until the bounty rotates. The target rerolls every 7 in-game days (tunable) and never repeats twice in a row. Everyone gets a chat announcement when a new bounty opens.
+- **The Fish Market.** Cash out your catches for emeralds. `/trigger rr.market` sells the fish in your hand **priced by its exact weight** (a 25 kg King Sturgeon is worth far more than a minnow), and the bounty species pays 2×. `/trigger rr.sellall` sells your whole catch at once at a flat rate — fast, with a small convenience discount. Big catches are worth selling by hand.
+- **The Angler's Log.** `/trigger rr.stats` shows your own lifetime numbers: total catches, personal-best weight, tournaments played and won, bounties claimed, emeralds earned at market, and which rods you've earned.
+- Every weighed fish now carries its numeric weight as data on the item, not just as lore text — this is what lets the market price by weight (and what a future economy mod could read). Fish caught before 1.4.0 still sell, at the minimum price.
+- Tunables for server admins: bounty period (`#bperiod`, default 7 days) and market price (`#emper`, kg per emerald, default 1).
+
 ## [1.3.0] — Two Paths
 
 The rod ladder forks. Everyone still earns the Angler's and Master's Rods the same way, but the top end now runs down two separate tracks — and both are fully obtainable.

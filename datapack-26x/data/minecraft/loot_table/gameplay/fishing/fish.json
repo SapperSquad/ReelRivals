@@ -48,7 +48,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"golden_bass\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Golden Bass", "color": "gold" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Gleams in river shallows.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790001 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790001] } }
           ]
         },
         {
@@ -62,7 +62,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"copper_trout\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Copper Trout", "color": "#B87333" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Flashes copper in the current.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790009 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790009] } }
           ]
         },
         {
@@ -76,7 +76,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"whiskered_catfish\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Whiskered Catfish", "color": "gray" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Bottom-feeder with a temper.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790010 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790010] } }
           ]
         },
         {
@@ -94,7 +94,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"lake_perch\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Lake Perch", "color": "yellow" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "A pondside staple.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790011 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790011] } }
           ]
         },
         {
@@ -112,7 +112,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"mirror_carp\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Mirror Carp", "color": "white" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Scales like polished silver.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790012 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790012] } }
           ]
         },
         {
@@ -132,7 +132,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"moonlit_koi\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Moonlit Koi", "color": "light_purple" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Glows beneath a still moon.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790013 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790013] } }
           ]
         },
         {
@@ -147,7 +147,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"midnight_eel\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Midnight Eel", "color": "dark_purple" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Only bites after dusk.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790002 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790002] } }
           ]
         },
         {
@@ -161,7 +161,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"silver_herring\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Silver Herring", "color": "gray" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Travels in glittering schools.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790014 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790014] } }
           ]
         },
         {
@@ -177,7 +177,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"storm_marlin\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Storm Marlin", "color": "blue" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Rides the rain-churned swells.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790003 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790003] } }
           ]
         },
         {
@@ -193,7 +193,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"sunfin_tuna\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Sunfin Tuna", "color": "yellow" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Chases the midday sun.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790016 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790016] } }
           ]
         },
         {
@@ -207,7 +207,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"deep_grouper\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Deep Grouper", "color": "dark_blue" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Hauled up from the dark.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790015 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790015] } }
           ]
         },
         {
@@ -223,7 +223,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"abyssal_angler\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Abyssal Angler", "color": "dark_purple" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Its little light is the last thing minnows see.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790017 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790017] } }
           ]
         },
         {
@@ -238,7 +238,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"frostfin_char\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Frostfin Char", "color": "aqua" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Thrives beneath the ice.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790004 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790004] } }
           ]
         },
         {
@@ -253,7 +253,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"ember_snapper\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Ember Snapper", "color": "red" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Burns bright over coral beds.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790005 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790005] } }
           ]
         },
         {
@@ -268,7 +268,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"swamp_lurker\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Swamp Lurker", "color": "dark_green" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Something stirs the murk...", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790006 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790006] } }
           ]
         },
         {
@@ -283,7 +283,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"jungle_piranha\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Jungle Piranha", "color": "green" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Bites back.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790007 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790007] } }
           ]
         },
         {
@@ -299,7 +299,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"mudskip_gar\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Mudskip Gar", "color": "#6B8E23" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Prowls the river banks by dark.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790018 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790018] } }
           ]
         },
         {
@@ -315,7 +315,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"thunderfin\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Thunderfin", "color": "yellow" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Surfaces only when the sky splits.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790019 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790019] } }
           ]
         },
         {
@@ -331,7 +331,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"glacier_pike\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Glacier Pike", "color": "#5F9EA0" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Hunts beneath midnight ice.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790020 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790020] } }
           ]
         },
         {
@@ -347,7 +347,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"coral_empress\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Coral Empress", "color": "#FF69B4" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Holds court over the reef at noon.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790021 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790021] } }
           ]
         },
         {
@@ -362,7 +362,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"emperor_arowana\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Emperor Arowana", "color": "gold" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "A living ingot of the canopy pools.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790022 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790022] } }
           ]
         },
         {
@@ -377,7 +377,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"void_skate\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Void Skate", "color": "#C8A2C8" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "It should not exist. Neither should your pond.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790023 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790023] } }
           ]
         },
         {
@@ -392,7 +392,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"ancient_coelacanth\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "Ancient Coelacanth", "color": "#8B4513" } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "Older than the ocean that hides it.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790024 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790024] } }
           ]
         },
         {
@@ -404,7 +404,7 @@
             { "function": "minecraft:set_custom_data", "tag": "{reelrivals:{species:\"king_sturgeon\",unweighed:1b}}" },
             { "function": "minecraft:set_name", "target": "item_name", "name": { "text": "King Sturgeon", "color": "gold", "bold": true } },
             { "function": "minecraft:set_lore", "mode": "append", "lore": [ { "text": "The one the old anglers whisper about.", "color": "dark_gray", "italic": true } ] },
-            { "function": "minecraft:set_custom_model_data", "value": 790008 }
+            { "function": "minecraft:set_custom_model_data", "floats": { "mode": "replace_all", "values": [790008] } }
           ]
         }
       ]

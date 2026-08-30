@@ -1,6 +1,4 @@
-**1.3.0 — Two Paths.** The rod ladder forks at the top, and both tracks are fully obtainable.
-- **New: Naturalist's Rod** (Lure III, Luck of the Sea VI, unbreakable) — earned by landing a catch in all nine waters: rivers, lakes, open ocean, warm seas, frozen seas, the deeps, swamps, jungles, and the End. This also closes a gap for solo players, who previously had nothing between the Master's Rod and the Legend Rod because the Champion's Rod requires a tournament (2+ players).
-- **New: Grandmaster's Rod** (Lure IV, Luck of the Sea VII, unbreakable) — the tournament capstone, for 5 wins, or 3 wins across 20 tournaments played.
-- **The Legend Rod is no longer a catch-count grind.** It now requires every species on the ledger plus a 15 kg leviathan, instead of 250 catches. If you were working toward the old unlock you'll need to finish the ledger; anyone who already has the rod keeps it.
-- The two capstones spend the same power budget differently — Luck of the Sea drives rarity, Lure drives bite speed. The Legend Rod hunts legends; the Grandmaster's Rod fishes about twice as fast.
-- Angler's Almanac expanded to 29 pages, with a page for each rod path.
+**1.4.1 - Wider Waters.** Same game, many more versions - plus a real fix.
+- **Now supports Minecraft 1.21.10, 1.21.11, 26.1, 26.1.1, 26.1.2 and 26.2** from a single file, alongside the existing 1.21.1 build. The pack declares a supported format range rather than one exact version.
+- **Fixed: custom fish lost their model IDs on 26.x.** All 24 named species were writing an empty `custom_model_data`, so a resource pack could not re-skin them. Gameplay was unaffected - the fish, weights, records and tournaments all worked - but the re-skinning hook the README promises was broken. Verified fixed on 1.21.10, 1.21.11 and 26.1.2.
+- No gameplay changes. If you are on 1.21.1 or 26.2 and do not use a resource pack, there is nothing new to see - this release is about reaching more players.

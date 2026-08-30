@@ -29,6 +29,10 @@ param(
     [int]$CurseForgeProjectId = 0,
     [switch]$SkipModrinth,
     [switch]$SkipCurseForge,
+    # -JarOnly uploads ONLY the NeoForge datapack-in-jar (for catching it up to an already-published
+    # release without duplicating the zip versions). -SkipJar is the inverse.
+    [switch]$JarOnly,
+    [switch]$SkipJar,
     [switch]$DryRun
 )
 $ErrorActionPreference = "Stop"
@@ -88,34 +92,73 @@ function Invoke-MultipartPost {
 }
 
 $script:cfVersionCache = $null
-function Get-CurseForgeGameVersionId {
-    param([string]$Name, [string]$Token)
-    if (-not $script:cfVersionCache) {
-        $client = New-Object System.Net.Http.HttpClient
-        try {
-            $client.DefaultRequestHeaders.TryAddWithoutValidation("X-Api-Token", $Token) | Out-Null
-            $resp = $client.GetAsync("https://minecraft.curseforge.com/api/game/versions").GetAwaiter().GetResult()
-            $body = $resp.Content.ReadAsStringAsync().GetAwaiter().GetResult()
-            if (-not $resp.IsSuccessStatusCode) { throw "Fetching CurseForge game versions failed: $($resp.StatusCode) - $body" }
-            $script:cfVersionCache = $body | ConvertFrom-Json
-        } finally {
-            $client.Dispose()
-        }
+$script:cfTypeCache = $null
+
+function Get-CurseForgeApi {
+    param([string]$Path, [string]$Token)
+    $client = New-Object System.Net.Http.HttpClient
+    try {
+        $client.DefaultRequestHeaders.TryAddWithoutValidation("X-Api-Token", $Token) | Out-Null
+        $resp = $client.GetAsync("https://minecraft.curseforge.com/api$Path").GetAwaiter().GetResult()
+        $body = $resp.Content.ReadAsStringAsync().GetAwaiter().GetResult()
+        if (-not $resp.IsSuccessStatusCode) { throw "GET $Path failed: $($resp.StatusCode) - $body" }
+        return $body | ConvertFrom-Json
+    } finally {
+        $client.Dispose()
     }
-    $match = $script:cfVersionCache | Where-Object { $_.name -eq $Name -or $_.slug -eq $Name }
-    if (-not $match) {
-        Write-Warning "No CurseForge game version found matching '$Name' - check the version dropdown on your CurseForge project's Files page for the exact string CurseForge uses."
-        return $null
-    }
-    return ($match | Select-Object -First 1).id
 }
 
+function Get-CurseForgeGameVersionId {
+    param([string]$Name, [string]$Token)
+    if (-not $script:cfVersionCache) { $script:cfVersionCache = Get-CurseForgeApi -Path "/game/versions" -Token $Token }
+    if (-not $script:cfTypeCache)    { $script:cfTypeCache    = Get-CurseForgeApi -Path "/game/version-types" -Token $Token }
+
+    # A version string exists under SEVERAL gameVersionTypeIDs. Verified 2026-07-19:
+    #   "1.21.1" -> 11779 (type 77784 "Minecraft 1.21")  <- the one we want
+    #               12735 (type 1, not listed in /game/version-types)
+    #               16115 (type 615 "Addons" - the Bukkit taxonomy)
+    #   "26.2"   -> 16498 (type 86297 "26.2")            <- the one we want
+    # Taking the first match is ORDER-DEPENDENT and would silently tag a release as an
+    # Addon if the API ever reordered, so restrict to real Minecraft version groups.
+    $mcTypeIds = @($script:cfTypeCache | Where-Object { $_.slug -like "minecraft-*" } | ForEach-Object { $_.id })
+    $all   = @($script:cfVersionCache | Where-Object { $_.name -eq $Name -or $_.slug -eq $Name })
+    $valid = @($all | Where-Object { $mcTypeIds -contains $_.gameVersionTypeID })
+
+    if ($valid.Count -eq 0) {
+        if ($all.Count -gt 0) {
+            $seen = ($all | ForEach-Object { $_.gameVersionTypeID }) -join ", "
+            Write-Warning "'$Name' exists on CurseForge but only under non-Minecraft version types ($seen). Refusing to guess - skipping."
+        } else {
+            Write-Warning "No CurseForge game version found matching '$Name' - check the version dropdown on your project's Files page for the exact string CurseForge uses."
+        }
+        return $null
+    }
+    if ($valid.Count -gt 1) {
+        $ids = ($valid | ForEach-Object { $_.id }) -join ", "
+        Write-Warning "'$Name' matched more than one Minecraft version type ($ids); using $($valid[0].id)."
+    }
+    return $valid[0].id
+}
+
+# `mc` = filename suffix; `gv` = the Minecraft versions this ONE artifact is tagged with.
+# The 26x tree declares min_format 88 / max_format 107. Verified live on 1.21.10, 1.21.11,
+# 26.1.2 and 26.2. 26.1 / 26.1.1 are INFERRED from 26.1.2 (same minor, bracketed by 101 and
+# 107) rather than tested - if either is ever reported as not loading, drop it from this list.
 $lines = @(
-    @{ src = (Join-Path $proj "datapack");     mc = "1.21.1" },
-    @{ src = (Join-Path $proj "datapack-26x"); mc = "26.2" }
+    @{ src = (Join-Path $proj "datapack");     mc = "1.21.1";       gv = @("1.21.1") },
+    @{ src = (Join-Path $proj "datapack-26x"); mc = "1.21.10-26.2"; gv = @("1.21.10","1.21.11","26.1","26.1.1","26.1.2","26.2") }
 )
 
+# The NeoForge datapack-in-jar (1.21.1 line only, built by build.ps1). Same content as the zip,
+# wrapped as a code-free lowcodefml mod so it installs like a mod and always loads after vanilla.
+# Uploaded as its OWN Modrinth version under loader "neoforge" - a player's loader filter has to be
+# able to find it. Verified end-to-end on a NeoForge dev server 2026-08-09: mod list shows it, the
+# fishing loot override applies, and the weigh pipeline runs.
+$JarMc = "1.21.1"
+$JarPath = Join-Path $dist ("ReelRivals-" + $Version + "+mc" + $JarMc + "-neoforge.jar")
+
 foreach ($l in $lines) {
+    if ($JarOnly) { continue }
     $zip = Join-Path $dist ("ReelRivals-" + $Version + "+mc" + $l.mc + ".zip")
     if (-not (Test-Path $zip)) { continue }
     Write-Host "`n=== $zip ==="
@@ -128,7 +171,7 @@ foreach ($l in $lines) {
             project_id     = $ModrinthProjectId
             file_parts     = @("file")
             primary_file   = "file"
-            game_versions  = @($l.mc)
+            game_versions  = $l.gv
             loaders        = @("datapack")
             version_type   = "release"
             featured       = $false
@@ -162,26 +205,33 @@ foreach ($l in $lines) {
             # in the dry run than half way through a live publish.
             Write-Host "[DryRun] CurseForge project $CurseForgeProjectId"
             if ($CurseForgeToken) {
-                $gvId = Get-CurseForgeGameVersionId -Name $l.mc -Token $CurseForgeToken
-                if ($gvId) {
-                    Write-Host "[DryRun]   game version '$($l.mc)' -> id $gvId; would POST upload-file"
-                } else {
-                    Write-Host "[DryRun]   game version '$($l.mc)' DID NOT RESOLVE - this upload would be skipped"
+                $gvIds = @()
+                foreach ($v in $l.gv) {
+                    $id = Get-CurseForgeGameVersionId -Name $v -Token $CurseForgeToken
+                    if ($id) { $gvIds += $id; Write-Host "[DryRun]   game version '$v' -> id $id" }
+                    else     { Write-Host "[DryRun]   game version '$v' DID NOT RESOLVE - will be omitted" }
                 }
+                if ($gvIds.Count -gt 0) { Write-Host "[DryRun]   would POST upload-file with $($gvIds.Count) version tag(s)" }
+                else { Write-Host "[DryRun]   NO versions resolved - this upload would be skipped" }
             } else {
                 Write-Host "[DryRun]   CURSEFORGE_TOKEN not set - cannot verify the game version id"
             }
         } else {
-            $gvId = Get-CurseForgeGameVersionId -Name $l.mc -Token $CurseForgeToken
-            if (-not $gvId) {
-                Write-Warning "Skipping CurseForge upload for $($l.mc) - no matching game version id."
+            # Resolve EVERY tag this artifact claims; CurseForge accepts a list.
+            $gvIds = @()
+            foreach ($v in $l.gv) {
+                $id = Get-CurseForgeGameVersionId -Name $v -Token $CurseForgeToken
+                if ($id) { $gvIds += $id } else { Write-Warning "CurseForge: version '$v' did not resolve - omitting it." }
+            }
+            if ($gvIds.Count -eq 0) {
+                Write-Warning "Skipping CurseForge upload for $($l.mc) - no matching game version ids."
             } else {
                 $metadata = @{
                     changelog     = $changelog
                     changelogType = "markdown"
                     displayName   = "Reel Rivals $Version ($($l.mc))"
                     releaseType   = "release"
-                    gameVersions  = @($gvId)
+                    gameVersions  = $gvIds
                 } | ConvertTo-Json -Depth 5
 
                 $headers = @{ "X-Api-Token" = $CurseForgeToken }
@@ -189,6 +239,39 @@ foreach ($l in $lines) {
                 Write-Host "CurseForge: uploaded $($l.mc)"
                 Write-Host $result
             }
+        }
+    }
+}
+
+# ---- NeoForge datapack-in-jar (Modrinth only; CurseForge has no Data Pack loader taxonomy) ----
+if (-not $SkipModrinth -and -not $SkipJar) {
+    if (-not (Test-Path $JarPath)) {
+        Write-Host "`nNeoForge jar: SKIPPED - not built. Run build.ps1 -Version $Version first."
+    } else {
+        Write-Host "`n=== $JarPath ==="
+        $jarVersionNumber = "$Version+mc$JarMc-neoforge"
+        $jarData = @{
+            name           = "Reel Rivals $jarVersionNumber"
+            version_number = $jarVersionNumber
+            project_id     = $ModrinthProjectId
+            file_parts     = @("file")
+            primary_file   = "file"
+            game_versions  = @($JarMc)
+            loaders        = @("neoforge")
+            version_type   = "release"
+            featured       = $false
+            dependencies   = @()
+            changelog      = $changelog
+        } | ConvertTo-Json -Depth 5
+
+        if ($DryRun) {
+            Write-Host "[DryRun] Would POST NeoForge jar to Modrinth /version:"
+            Write-Host $jarData
+        } else {
+            $headers = @{ Authorization = $ModrinthToken }
+            $result = Invoke-MultipartPost -Uri "https://api.modrinth.com/v2/version" -Headers $headers -JsonFieldName "data" -JsonBody $jarData -FileFieldName "file" -FilePath $JarPath
+            Write-Host "Modrinth: uploaded $jarVersionNumber"
+            Write-Host $result
         }
     }
 }

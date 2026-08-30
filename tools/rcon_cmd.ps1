@@ -1,4 +1,4 @@
-param([string]$File)
+param([string]$File, [int]$Port = 25575, [string]$Password = "rrtest")
 $ErrorActionPreference = "Stop"
 function Read-Exact($stream, $count) {
   $buf = New-Object byte[] $count; $off = 0
@@ -16,9 +16,9 @@ function Read-Pkt($stream) {
   $rest = Read-Exact $stream $len
   return @{ id = [BitConverter]::ToInt32($rest, 0); body = [Text.Encoding]::UTF8.GetString($rest, 8, $len - 10) }
 }
-$client = New-Object System.Net.Sockets.TcpClient("127.0.0.1", 25575)
+$client = New-Object System.Net.Sockets.TcpClient("127.0.0.1", $Port)
 $s = $client.GetStream(); $s.ReadTimeout = 30000
-Send-Pkt $s 1 3 "rrtest"; if ((Read-Pkt $s).id -eq -1) { throw "RCON auth failed" }
+Send-Pkt $s 1 3 $Password; if ((Read-Pkt $s).id -eq -1) { throw "RCON auth failed" }
 foreach ($cmd in (Get-Content $File | Where-Object { $_.Trim() -ne "" -and -not $_.StartsWith("#") })) {
   Send-Pkt $s 7 2 $cmd
   Start-Sleep -Milliseconds 150

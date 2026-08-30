@@ -26,7 +26,16 @@ runtime bug during development (2026-07-18); run it after any pack change or Min
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File rcon_cmd.ps1 -File smoketest.txt
+powershell -ExecutionPolicy Bypass -File rcon_cmd.ps1 -File test-140.txt              # 1.4.0 checks
+powershell -ExecutionPolicy Bypass -File rcon_cmd.ps1 -File test-140.txt -Port 25576  # same, on the 26.2 server
 ```
+
+`rcon_cmd.ps1` takes `-Port` (default 25575) and `-Password` (default `rrtest`). The 26.2 server in
+`vanilla-server-26/` listens on **25576** — run both, they should agree.
+
+`test-140.txt` covers the 1.4.0 additions: numeric `w` baked onto weighed fish, a bounty being
+active after load, the market's price math (w=54 -> 5 em, w=250 -> 25, w=3 -> 1 via the min-1
+clamp), and two forced bounty rotations landing on different species.
 
 Each command prints with its server response. What to check:
 

@@ -10,8 +10,13 @@ Two builds, same content, one per Minecraft data-format line. `tools/build.ps1` 
 
 | Build | Minecraft | Source tree | datapack format |
 |---|---|---|---|
-| `dist/ReelRivals-1.3.0+mc1.21.1.zip` | 1.21.1 | `datapack/` (the source of truth) | 48 |
-| `dist/ReelRivals-1.3.0+mc26.2.zip` | 26.2 | `datapack-26x/` (generated) | 107 |
+| `dist/ReelRivals-1.4.0+mc1.21.1.zip` | 1.21.1 | `datapack/` (the source of truth) | 48 |
+| `dist/ReelRivals-1.4.0+mc1.21.1-neoforge.jar` | 1.21.1 | same, wrapped as a code-free mod | 48 |
+| `dist/ReelRivals-1.4.0+mc26.2.zip` | 26.2 | `datapack-26x/` (generated) | 107 |
+
+The `.zip`s are loader-agnostic — vanilla, Fabric, Quilt, NeoForge, and Paper all load a datapack
+the same way. The `.jar` is the same content wrapped as a code-free NeoForge mod, so it installs
+like a mod and always loads after vanilla (no pack-order fiddling).
 
 The 26.x build is **generated, never hand-edited** — `tools/port_to_26.ps1` transforms the 1.21.1
 tree into `datapack-26x/` (pack format 48→107; `time_check` `period`→`clock:"minecraft:overworld"`;
@@ -44,8 +49,11 @@ can re-skin them later without touching the datapack.
 | `/trigger rr.host` | Host a tournament — clickable chat menu for scoring, target, duration, buy-in, gear rules, payout split |
 | `/trigger rr.join` | Join an open lobby (pays the emerald buy-in into the pot) |
 | `/trigger rr.records` | Server record ledger — best weight per species, who holds it, and the in-game day |
+| `/trigger rr.stats` | Your **Angler's Log** — lifetime catches, personal-best weight, tournaments played/won, bounties claimed, emeralds earned, and rods earned |
+| `/trigger rr.market` | Sell the fish in your hand for emeralds, priced by its exact weight (bounty species pays 2×) |
+| `/trigger rr.sellall` | Sell every weighed fish at once at a flat rate — fast, with a small convenience discount |
 | `/trigger rr.top` | Toggle the **Top Anglers** sidebar — a live leaderboard of lifetime catches (top ~15, sorted, offline players included). Auto-hides during tournaments (the sidebar shows live standings then). |
-| `/trigger rr.guide` | Get the **Angler's Almanac** — 29-page field guide (fish + conditions, lure recipes, both rod build paths, tournament commands). No enchant glint, two-page clickable table of contents, and a `<< Contents` link in every page footer. Also auto-given to each player on first join. Note: books already in inventories are snapshots — grab a fresh copy after updating the pack. |
+| `/trigger rr.guide` | Get the **Angler's Almanac** — 30-page field guide (fish + conditions, lure recipes, both rod build paths, tournament commands). No enchant glint, two-page clickable table of contents, and a `<< Contents` link in every page footer. Also auto-given to each player on first join. Note: books already in inventories are snapshots — grab a fresh copy after updating the pack. |
 
 Admin: `/function reelrivals:admin/reset` force-cancels a stuck tournament and refunds buy-ins.
 
@@ -109,6 +117,19 @@ Admin: `/function reelrivals:admin/reset` force-cancels a stuck tournament and r
   Payouts queue in a ledger and auto-deliver when the recipient is online, so a crash or logout can't eat the pot.
   Trophies are baked with the tournament day and final score; the winner's name is immortalized in the results
   broadcast and the record announcements (item text in 1.21.1 can't bake player names — verified in testing).
+- **The Bounty Board** — there is always an active bounty species. Land it and you claim **16 emeralds**
+  (once per rotation, per player), and it sells for **double** at the market until the bounty rotates.
+  The target rerolls every **7 in-game days** and never repeats twice in a row, with a server-wide
+  announcement each time. *(Vanilla has no wall-clock query, so the period is in-game days, not real
+  weeks — admins can raise `#bperiod` for a slower rotation.)*
+- **The Fish Market** — cash your catch out for emeralds. `/trigger rr.market` sells the fish in your
+  hand **priced by its exact weight** (floor of kg, minimum 1 — so a 25 kg King Sturgeon pays 25 and a
+  minnow pays 1), doubled if it's the bounty species. `/trigger rr.sellall` clears your whole catch at a
+  flat 2 emeralds each: faster, slightly worse, so trophies are worth selling by hand. Admins tune the
+  rate with `#emper` (kg per emerald). Trophies and the Almanac are never sellable.
+- **The Angler's Log** — `/trigger rr.stats` gives each player their own numbers: lifetime catches,
+  personal-best weight, tournaments played and won, bounties claimed, emeralds earned at market, and
+  which rods they've earned.
 - **Advancements** — On the Scale, The Old King, Master Angler (catch all 28), Every Water in the World
   (a catch in all nine environments), Grandmaster, Regular at the Docks, Heavyweight, Circuit Regular,
   Tournament Champion, plus hidden per-species catches that unlock each lure.

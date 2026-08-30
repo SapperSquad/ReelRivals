@@ -11,9 +11,10 @@ scoreboard players operation @s rr.kg /= #10 rr.const
 scoreboard players operation @s rr.fr = @s rr.w
 scoreboard players operation @s rr.fr %= #10 rr.const
 
-# bake the weight into the item as literal lore text and flip the state flags
+# bake the weight into the item as literal lore text + numeric w, and flip the state flags
 execute store result storage reelrivals:tmp kg int 1 run scoreboard players get @s rr.kg
 execute store result storage reelrivals:tmp fr int 1 run scoreboard players get @s rr.fr
+execute store result storage reelrivals:tmp w int 1 run scoreboard players get @s rr.w
 function reelrivals:catch/apply_weight with storage reelrivals:tmp
 
 scoreboard players operation #last rr.t = @s rr.w

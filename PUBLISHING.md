@@ -1,4 +1,4 @@
-# Reel Rivals — publishing kit (current as of v1.3.0 "Two Paths")
+# Reel Rivals — publishing kit (current as of v1.4.1 "Wider Waters")
 
 Everything for the Modrinth project page. Art lives in `assets/`
 (icon.png = project icon, banner.png = featured gallery image, card_*.png = gallery).
@@ -6,28 +6,56 @@ Everything for the Modrinth project page. Art lives in `assets/`
 **Files to upload — ADD as new versions; do not delete older versions**
 (Modrinth automatically serves each player the newest file tagged for their game version):
 
-| Upload as version | File | Game version tag |
-|---|---|---|
-| `1.3.0+mc1.21.1` | `dist/ReelRivals-1.3.0+mc1.21.1.zip` | 1.21.1 |
-| `1.3.0+mc26.2` | `dist/ReelRivals-1.3.0+mc26.2.zip` | 26.2 |
+| Upload as version | File | Game version tags | Loader |
+|---|---|---|---|
+| `1.4.1+mc1.21.1` | `dist/ReelRivals-1.4.1+mc1.21.1.zip` | 1.21.1 | **datapack** |
+| `1.4.1+mc1.21.10-26.2` | `dist/ReelRivals-1.4.1+mc1.21.10-26.2.zip` | 1.21.10, 1.21.11, 26.1, 26.1.1, 26.1.2, 26.2 | **datapack** |
+| `1.4.1+mc1.21.1-neoforge` | `dist/ReelRivals-1.4.1+mc1.21.1-neoforge.jar` | 1.21.1 | **neoforge** |
 
-Both are loader "datapack" and carry identical content — same 28 fish, tackle, tournaments,
-leaderboard, and Almanac — just built for each version's data format. Both were verified
-error-free and smoke-tested on their own dedicated vanilla server. Paste the 1.2.1 changelog
-(below) into each upload's changelog field.
+**The second zip is ONE file covering six game versions** — its `pack.mcmeta` declares
+`min_format 88 / max_format 107` rather than a single format. Do not split it per version.
 
-**Heads-up for the 1.3.0 release notes**: the Legend Rod's unlock changed from 250 catches to
-"every species + a 15 kg catch." Players mid-way to the old gate will find it moved. Anyone who
-already owns the rod keeps it. Worth calling out plainly in the version description so it doesn't
-read as a bug.
+All carry identical content — same 28 fish, tackle, tournaments, leaderboard, and Almanac. The
+`.zip`s are built for each version's data format; the `.jar` is the 1.21.1 datapack wrapped as a
+code-free NeoForge mod (same content, installs like a mod, always loads after vanilla so the
+fishing-loot override can't lose the pack-order race). Paste the 1.4.1 changelog (below) into each
+upload's changelog field.
+
+**Set the loader per file.** On the SAME Modrinth version you can attach both the zip (loader
+`datapack`) and the jar (loader `neoforge`) so a NeoForge player's mod-list filter finds it — or
+upload them as separate versions. The **zip is loader-agnostic**: it runs on vanilla, Fabric,
+Quilt, NeoForge, and Paper alike. Say so on the project page — a Fabric player scanning listings
+will not assume a "datapack" works for them.
+
+**The NeoForge `.jar` is live-verified** (2026-08-09, NeoForge 1.21.1 dev server alongside two other
+mods): it appears in the mod list, its load function runs, the weigh pipeline works, and rolling the
+vanilla fishing loot table yields Reel Rivals data — proving the jar wins the loot override that the
+zip's install steps have to warn players about. `publish.ps1` uploads it automatically; use
+`-JarOnly` to add it to a release whose zips are already up.
+
+**Heads-up for the 1.4.0 release notes**: nothing is taken away this release, but two things are
+worth stating plainly so they don't read as bugs.
+1. The bounty rotates on **in-game days** (7 by default), not real-world weeks — vanilla has no
+   wall-clock query. On a 24/7 server that is faster than a week; admins raise `#bperiod` to slow it.
+2. Fish caught **before** 1.4.0 have no weight data baked in, so they sell at the 1-emerald minimum
+   rather than by weight. Newly caught fish price correctly. Not a bug, and not worth a migration.
+
+Still true from 1.3.0: the Legend Rod's unlock is "every species + a 15 kg catch," not 250 catches.
 
 ---
 
 ## Summary (Modrinth's short-description field)
 
-> Competitive fishing for vanilla 1.21.1 — 28 weighed species, craftable lures that target them,
+> Competitive fishing for vanilla Minecraft — 28 weighed species, craftable lures that target them,
 > server records, a live catch leaderboard, and player-hosted tournaments with emerald buy-ins,
 > trophies, and glory. No mods. No ops. Just /trigger.
+
+**Store copy is CURRENT as of 1.4.1** — description updated and changelog posted on both platforms
+2026-08-09.
+
+**Do not pin the short description to one Minecraft version.** It said "for vanilla 1.21.1" through
+1.4.0, which undersold the pack the moment it covered eight versions. Supported versions belong in
+the version tags, not the tagline.
 
 ---
 
@@ -91,9 +119,30 @@ Neither is strictly better. Luck of the Sea pulls rarity; Lure pulls speed. Arou
 bait tiers up to **King's Feast** (Luck V), **Abyssal Chum** at 100 catches, *Master of the
 Deep* at 1,000, and a `/trigger rr.top` **live leaderboard** of the server's best.
 
+## 🎯 There's always a bounty
+
+One species is wanted at any given time. Land it and you claim **16 emeralds** on the spot — and
+until the bounty rotates, that fish sells for **double**. The target rerolls on a timer, never
+repeats twice running, and the whole server hears about it the moment a new one opens.
+
+## 💰 Sell the catch
+
+Fish are worth money now, and **weight is the price**. Hold a catch and `/trigger rr.market` pays
+you by the kilo — a 25 kg King Sturgeon is a payday, a minnow is pocket change. In a hurry?
+`/trigger rr.sellall` clears your whole haul at a flat rate: faster, slightly cheaper, so the
+monsters are still worth selling by hand. Then take the emeralds straight to a tournament buy-in.
+
+Your trophies are safe — they can't be sold by accident.
+
+## 📊 Your own log
+
+`/trigger rr.stats` is just yours: lifetime catches, your personal best to the decimal, tournaments
+played and won, bounties claimed, emeralds earned, and every rod you've unlocked. The leaderboard
+says who's winning. The log says how far *you've* come.
+
 ## 📖 The Angler's Almanac
 
-Every player gets a free in-game field guide — 29 pages with a clickable, linked table of
+Every player gets a free in-game field guide — 30 pages with a clickable, linked table of
 contents and a `<< Contents` jump on every page: every species with where and when it bites,
 every lure recipe, and both rod build paths. `/trigger rr.guide` any time.
 
@@ -115,6 +164,9 @@ the fishing loot — the pack detects this and prints the one-command fix in cha
 | `/trigger rr.join` | enter the lobby |
 | `/trigger rr.records` | per-species record ledger |
 | `/trigger rr.top` | live Top Anglers leaderboard |
+| `/trigger rr.stats` | your own Angler's Log |
+| `/trigger rr.market` | sell the fish in your hand, by weight |
+| `/trigger rr.sellall` | sell your whole catch at a flat rate |
 | `/trigger rr.guide` | the Almanac |
 
 *Tip: `/gamerule doLimitedCrafting true` makes gear unlocks binding.*
@@ -130,7 +182,51 @@ the fishing loot — the pack detects this and prints the one-command fix in cha
 | `card_lures.png` | Learn a fish by catching it — then craft the lure that hunts it |
 | `card_tournaments.png` | Player-hosted tournaments: emerald buy-ins, live standings, podium trophies |
 | `card_progression.png` | Two paths to the top: six rods across two tracks, five bait tiers, and a live Top Anglers leaderboard |
+| `card_market.png` **(new in 1.4.0)** | Every catch pays: a rotating bounty, a market that buys by weight, and a log of everything you've earned |
 | *(your screenshots)* | Add 2–3 real in-game shots (F2): a weighed catch tooltip, a record broadcast in chat, the tournament bossbar mid-match, the Top Anglers sidebar. Real gameplay screenshots convert better than any promo art — put at least one before the cards. |
+
+Larger 1280x720 versions for the CurseForge gallery live in `promo/` — `gallery-6-bounty.png` is the
+1.4.0 addition, a three-panel breakdown of the bounty, market, and log with the commands along the
+bottom. **Both are generated by `tools/GenCards.java`** — edit that, not the PNGs.
+
+**Gallery art is current as of 1.4.0** (uploaded 2026-08-09). The six generated images —
+`banner-1920x640`, `gallery-4-gear`, `gallery-5-endgame`, `gallery-6-bounty`, `card_progression`,
+`card_market` — are live on both stores. The remaining seven are the original hand-made 1.1.0
+exports and are still accurate.
+
+**Next release, re-check these before uploading:** the banner's species count and MC version line,
+the gear card's rod roster and unlock text, and the endgame card's milestone list. Those four have
+each carried a stale claim at some point — the banner shipped "24 rare species" against a 28-species
+pack, and the gear card advertised a 250-catch Legend Rod after that gate had changed. Regenerate
+with `java tools/GenCards.java` and compare rather than assuming.
+
+## Changelog for the 1.4.1 uploads
+
+> **1.4.1 — Wider Waters.** Same game, many more versions — plus a real fix.
+> - **Now supports Minecraft 1.21.10, 1.21.11, 26.1, 26.1.1, 26.1.2 and 26.2** from a single file,
+>   alongside the existing 1.21.1 build.
+> - **Fixed: custom fish lost their model IDs on 26.x.** All 24 named species were writing an empty
+>   `custom_model_data`, so a resource pack could not re-skin them. Gameplay was unaffected — fish,
+>   weights, records and tournaments all worked — but the re-skinning hook the description promises
+>   was broken. Verified fixed on 1.21.10, 1.21.11 and 26.1.2.
+> - No gameplay changes.
+
+## Changelog for the 1.4.0 uploads
+
+> **1.4.0 — Bait the Hook.** Three ways to keep coming back to the water.
+> - **The Bounty Board.** There's always an active bounty species. Land it to claim **16 emeralds**
+>   (once per rotation), and it sells for **double** at the market until the bounty rotates. The
+>   target rerolls every 7 in-game days (tunable) and never repeats twice in a row.
+> - **The Fish Market.** Cash out for emeralds. `/trigger rr.market` sells the fish in your hand
+>   **priced by its exact weight** — a 25 kg King Sturgeon is worth far more than a minnow — and the
+>   bounty species pays 2×. `/trigger rr.sellall` sells your whole catch at once at a flat rate:
+>   fast, with a small convenience discount, so trophies are worth selling by hand.
+> - **The Angler's Log.** `/trigger rr.stats` shows your lifetime catches, personal-best weight,
+>   tournaments played and won, bounties claimed, emeralds earned, and the rods you've earned.
+> - Every weighed fish now carries its numeric weight as item data, not just lore text — that's what
+>   lets the market price by weight. Fish caught before 1.4.0 still sell, at the minimum price.
+> - Server admins can tune the bounty period (`#bperiod`, default 7 in-game days) and the market
+>   rate (`#emper`, kg per emerald, default 1).
 
 ## Changelog for the 1.3.0 uploads
 

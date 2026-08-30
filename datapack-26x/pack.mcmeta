@@ -1,6 +1,7 @@
 {
   "pack": {
-    "pack_format": 107,
-    "description": "Reel Rivals - competitive fishing (Minecraft 26.2)"
+    "description": "Reel Rivals - competitive fishing (MC 1.21.10 - 26.2)",
+    "min_format": 88,
+    "max_format": 107
   }
 }

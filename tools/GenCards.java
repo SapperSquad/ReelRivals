@@ -55,7 +55,9 @@ public class GenCards {
         write(banner(),       new File(root, "promo/banner-1920x640.png"));
         write(gearLadder(),   new File(root, "promo/gallery-4-gear.png"));
         write(endgame(),      new File(root, "promo/gallery-5-endgame.png"));
+        write(bounty(),       new File(root, "promo/gallery-6-bounty.png"));
         write(progression(),  new File(root, "assets/card_progression.png"));
+        write(cardMarket(),   new File(root, "assets/card_market.png"));
         System.out.println("done");
     }
 
@@ -300,6 +302,135 @@ public class GenCards {
         drawWave(g, W, H, H - 70, 30, new Color(0x1F, 0x66, 0x75, 70));
         drawWave(g, W, H, H - 28, 22, new Color(0x14, 0x50, 0x5E, 100));
 
+        g.dispose();
+        return img;
+    }
+
+    // ---- 1.4.0: bounty board / fish market / angler's log ------------------
+    // Colors for the three 1.4.0 systems. Bounty borrows the trophy gold, the market
+    // borrows emerald green, the log borrows the almanac's parchment.
+    static final Color C_BOUNTY = new Color(0xFFC845);
+    static final Color C_MARKET = new Color(0x5CD98A);
+    static final Color C_LOG    = new Color(0x8FD4E8);
+
+    /** A faceted emerald, drawn rather than sprited so it scales with the card. */
+    static void emerald(Graphics2D g, int cx, int cy, int r, Color c) {
+        Path2D.Double p = new Path2D.Double();
+        p.moveTo(cx, cy - r);
+        p.lineTo(cx + r * 0.72, cy - r * 0.25);
+        p.lineTo(cx + r * 0.45, cy + r * 0.85);
+        p.lineTo(cx - r * 0.45, cy + r * 0.85);
+        p.lineTo(cx - r * 0.72, cy - r * 0.25);
+        p.closePath();
+        g.setColor(c);
+        g.fill(p);
+        // top facet highlight
+        g.setColor(new Color(255, 255, 255, 70));
+        Path2D.Double f = new Path2D.Double();
+        f.moveTo(cx, cy - r);
+        f.lineTo(cx + r * 0.72, cy - r * 0.25);
+        f.lineTo(cx, cy + r * 0.10);
+        f.lineTo(cx - r * 0.72, cy - r * 0.25);
+        f.closePath();
+        g.fill(f);
+    }
+
+    /** A small open book / ledger. */
+    static void ledger(Graphics2D g, int cx, int cy, int w, Color c) {
+        int h = Math.round(w * 0.72f);
+        g.setColor(c);
+        g.fill(new RoundRectangle2D.Float(cx - w / 2f, cy - h / 2f, w, h, 6, 6));
+        g.setColor(new Color(0x0C, 0x2E, 0x38, 200));
+        g.fillRect(cx - 2, cy - h / 2 + 4, 4, h - 8);           // spine
+        g.setColor(new Color(0x0C, 0x2E, 0x38, 120));
+        for (int i = 1; i <= 3; i++) {                            // ruled lines
+            int ly = cy - h / 2 + 6 + i * (h - 12) / 4;
+            g.fillRect(cx - w / 2 + 8, ly, w / 2 - 14, 3);
+            g.fillRect(cx + 6, ly, w / 2 - 14, 3);
+        }
+    }
+
+    static BufferedImage bounty() {
+        int W = 1280, H = 720;
+        BufferedImage img = new BufferedImage(W, H, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = newCanvas(img);
+        galleryBackground(g, W, H);
+
+        eyebrow(g, 72, 76);
+        headline(g, "EVERY CATCH PAYS", 72, 168, 62f, 5);
+
+        g.setFont(font("Segoe UI", Font.PLAIN, 27f));
+        g.setColor(BODY_GRAY);
+        g.drawString("A reason to fish today, and something to show for it.", 74, 214);
+
+        int py = 258, ph = 322, pw = 368, gap = 28;
+        int x1 = 72, x2 = x1 + pw + gap, x3 = x2 + pw + gap;
+
+        // --- bounty ---
+        panel(g, x1, py, pw, ph, C_BOUNTY);
+        star(g, x1 + pw / 2, py + 62, 30, C_BOUNTY);
+        centered(g, "THE BOUNTY BOARD", font("Segoe UI", Font.BOLD, 22f), C_BOUNTY, x1 + pw / 2, py + 130);
+        paragraph(g, "One target species at a time. Land it to claim 16 emeralds, and it sells "
+                + "for double until the bounty rotates.",
+                font("Segoe UI", Font.PLAIN, 19f), BODY_GRAY, x1 + 30, py + 168, pw - 60, 28);
+        centered(g, "rotates every 7 in-game days", font("Segoe UI", Font.ITALIC, 17f),
+                new Color(0x87, 0x9B, 0xA1), x1 + pw / 2, py + ph - 26);
+
+        // --- market ---
+        panel(g, x2, py, pw, ph, C_MARKET);
+        emerald(g, x2 + pw / 2, py + 58, 30, C_MARKET);
+        centered(g, "THE FISH MARKET", font("Segoe UI", Font.BOLD, 22f), C_MARKET, x2 + pw / 2, py + 130);
+        paragraph(g, "Sell by exact weight. A 25 kg King Sturgeon is worth 25x a minnow - so "
+                + "the big ones are worth keeping.",
+                font("Segoe UI", Font.PLAIN, 19f), BODY_GRAY, x2 + 30, py + 168, pw - 60, 28);
+        centered(g, "or cash out the whole catch at once", font("Segoe UI", Font.ITALIC, 17f),
+                new Color(0x87, 0x9B, 0xA1), x2 + pw / 2, py + ph - 26);
+
+        // --- log ---
+        panel(g, x3, py, pw, ph, C_LOG);
+        ledger(g, x3 + pw / 2, py + 58, 62, C_LOG);
+        centered(g, "THE ANGLER'S LOG", font("Segoe UI", Font.BOLD, 22f), C_LOG, x3 + pw / 2, py + 130);
+        paragraph(g, "Your lifetime catches, personal best, tournaments won, bounties claimed "
+                + "and emeralds earned.",
+                font("Segoe UI", Font.PLAIN, 19f), BODY_GRAY, x3 + 30, py + 168, pw - 60, 28);
+        centered(g, "and the rods you have earned", font("Segoe UI", Font.ITALIC, 17f),
+                new Color(0x87, 0x9B, 0xA1), x3 + pw / 2, py + ph - 26);
+
+        // command strip
+        g.setFont(font("Segoe UI Semibold", Font.PLAIN, 22f));
+        g.setColor(TEAL);
+        centered(g, "/trigger rr.market      /trigger rr.sellall      /trigger rr.stats",
+                font("Segoe UI Semibold", Font.PLAIN, 22f), TEAL, W / 2, 634);
+
+        g.dispose();
+        return img;
+    }
+
+    /** assets/ counterpart in the flat card style. */
+    static BufferedImage cardMarket() {
+        int W = 1280, H = 640;
+        BufferedImage img = new BufferedImage(W, H, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = newCanvas(img);
+
+        g.setPaint(new GradientPaint(0, 0, CARD_TOP, 0, H, CARD_BOTTOM));
+        g.fillRect(0, 0, W, H);
+
+        g.setFont(font("Segoe UI", Font.BOLD, 54f));
+        g.setColor(CARD_HEAD);
+        g.drawString("Every catch pays.", 68, 118);
+
+        paragraph(g, "A rotating bounty fish pays out and sells for double. The market buys "
+                + "your catch by exact weight. And the Angler's Log keeps every number "
+                + "you have ever earned.",
+                font("Segoe UI", Font.PLAIN, 31f), WHITE, 68, 196, 720, 52);
+
+        // One tidy column on the right - scattered placement read as accidental.
+        int ix = 1030;
+        emerald(g, ix, 168, 56, C_MARKET);
+        star(g, ix, 292, 46, C_BOUNTY);
+        ledger(g, ix, 412, 98, C_LOG);
+
+        pixelWaves(g, W, H);
         g.dispose();
         return img;
     }

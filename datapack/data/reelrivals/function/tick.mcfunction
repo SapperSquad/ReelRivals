@@ -13,6 +13,12 @@ execute as @a[scores={rr.guide=1..}] run function reelrivals:guide
 scoreboard players reset @a rr.guide
 execute as @a[scores={rr.top=1..}] run function reelrivals:top
 scoreboard players reset @a rr.top
+execute as @a[scores={rr.market=1..}] run function reelrivals:market/sell_held
+scoreboard players reset @a rr.market
+execute as @a[scores={rr.sellall=1..}] run function reelrivals:market/sell_all
+scoreboard players reset @a rr.sellall
+execute as @a[scores={rr.stats=1..}] run function reelrivals:stats/show
+scoreboard players reset @a rr.stats
 execute as @a[scores={rr.host=1..}] run function reelrivals:tournament/host_click
 scoreboard players reset @a rr.host
 execute as @a[tag=rr_host,scores={rr.mode=1..}] run function reelrivals:tournament/set_mode
@@ -56,6 +62,11 @@ execute as @a[scores={rr.caught=1000..},tag=!rr_u7] run function reelrivals:unlo
 # deliver queued payouts to online players
 execute as @a[scores={rr.owed=1..}] run function reelrivals:tournament/payone_prep
 
+# bounty board: check for a rotation about once per second
+scoreboard players add #btick rr.t 1
+execute if score #btick rr.t matches 20.. run scoreboard players set #btick rr.t 0
+execute if score #btick rr.t matches 0 run function reelrivals:bounty/rotate
+
 # tournament state machine
 execute if score #state rr.t matches 1 run function reelrivals:tournament/lobby_tick
 execute if score #state rr.t matches 2 run function reelrivals:tournament/run_tick
@@ -68,6 +79,9 @@ scoreboard players enable @a rr.records
 scoreboard players enable @a rr.help
 scoreboard players enable @a rr.guide
 scoreboard players enable @a rr.top
+scoreboard players enable @a rr.market
+scoreboard players enable @a rr.sellall
+scoreboard players enable @a rr.stats
 execute as @a[tag=rr_host] run scoreboard players enable @s rr.mode
 execute as @a[tag=rr_host] run scoreboard players enable @s rr.dur
 execute as @a[tag=rr_host] run scoreboard players enable @s rr.buyin
